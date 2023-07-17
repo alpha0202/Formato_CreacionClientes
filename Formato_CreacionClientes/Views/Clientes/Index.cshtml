@@ -1,0 +1,953 @@
+﻿@model Formato_CreacionClientes.Models.ClientesModel
+
+
+@{
+    ViewData["Title"] = "Creacion";
+}
+
+
+<div class="container">
+    <div class="row">
+        <div class="container mx-auto">
+            <form asp-action="">
+                <div class="row">
+                    <nav class="card  mb-4">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="card  border-0">
+                                    <div class="hstack g-2" style="padding-top:36px">
+
+                                        <img src="~/img/aliarlogo1.fw.png" alt="LogoAliar" width="160" height="90" class="img-fluid rounded-start">
+                                        <img src="~/img/LOGO LA FAZENDA.png" alt="LogoFazenda" width="140" height="90" class="img-fluid rounded-start">
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+
+                                <div class="card-body mx-0 px-0">
+                                    <div class="card border-0">
+                                        <h4 class="card-title " style="text-align:center">
+                                            AGROPECUARIA ALIAR S.A.
+                                        </h4>
+
+                                    </div>
+
+                                    <div class="container-fluid mx-0 px-2">
+                                       
+                                        <div class="card-body mx-0 px-0 ">
+                                            <div class="row">
+                                                <div class="hstack g-2 border-0 mx-0 px-0">
+
+                                                    <div class="col-sm-12">
+                                                        <h6 style="text-align:center">FORMATO CREACIÓN DE CLIENTES</h6>
+                                                    </div>
+                                                   @* <div class="vr"></div>
+                                                    <div class="col-sm-2">
+                                                        <h6 class="" style="text-align:center">Número</h6>
+                                                    </div>
+                                                    <div class="vr"></div>
+                                                    <div class="form-group col-sm-2">
+                                                    </div>*@
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="card-body mx-0 px-0">
+                                            <div class="col-sm-12">
+                                                <div class="row">
+                                                    <div class="hstack g-2 border" style="background-color: lightseagreen">
+                                                        <div class="col-sm-3 mx-0 px-0" style="background-color: lightseagreen">
+                                                            <h6 class="" style="text-align:center;">Código</h6>
+                                                            <p style="text-align:center;">CUM-FT-015 Y 016</p>
+                                                        </div>
+                                                        <div class="col-1 vr"></div>
+                                                        <div class="col-sm-2">
+                                                            <h6 class="" style="text-align:center">Versión</h6> 
+                                                            <p class="" style="text-align:center">01</p>
+                                                        </div>
+                                                        <div class="col-1 vr"></div>
+                                                        <div class="col-sm-4">
+                                                            <h6 class="" style="text-align:center">Código Documento Asociado</h6>
+                                                            <p style="text-align:center">CUM-PR-002</p>
+                                                        </div>
+                                                        <div class="col-1 vr" ></div>
+                                                        <div class="col-sm-3" style="background-color: lightseagreen">
+                                                            <h6 class="" style="text-align:center">Fecha de Emisión</h6>
+                                                            <p class="" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</p>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </nav>
+                    <br />
+                    <div class="card  mb-3  mx-0 ">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                1. INFORMACIÓN DE LA SOLICITUD
+                            </h5>
+
+                        </div>
+
+                        <div class="container-fluid  mx-0 px-0">
+                            <div class="row">
+                                <div class="card-body mx-0 px-0">
+                                    <div class="hstack gap-2">
+                                        <div class="p-sm-2 mx-0 px-0 col-2">
+                                            <h7>Fecha Diligenciamiento</h7>
+                                        </div>
+                                        
+                                        <div class="p-sm-1 mx-0 px-0">
+
+                                            <div class="p-sm-2">
+                                                <div id=""><strong>@DateTime.Today.ToString("dd-MMM-yyyy")</strong></div>
+                                            </div>
+                                            @*<input asp-for="FechaRegistro" class="form-control me-auto disabled" id="fecha_reg" placeholder="@DateTime.Today.ToString("dd-MMM-yyyy") > *@
+                                        </div>
+
+                                     
+
+
+
+
+                                        <div class="col-1">
+                                        </div>
+                                        <div class="vr"></div>
+                                        <div class="col-1">
+
+                                        </div>
+                                        <div class="p-sm-2 col-2">
+                                            <h7>Tipo Operación</h7>
+                                        </div>
+
+                                        <div class="form-group p-sm-2 col-4">
+                                            <select asp-for="TipoOperacion" class="form-select" aria-label="tipoSolicitud">
+                                                <option selected></option>
+                                                <option value="VInicial">Vinculación Inicial</option>
+                                                <option value="Actualizacion">Actualización</option>
+
+                                            </select>
+
+                                        </div>
+                                       
+                                                                            
+                                      
+
+                                    </div>
+
+                                </div>
+                            </div>
+                           
+
+                            <div class="row">
+                                <div class="card-body mx-0 px-0">
+                                    <div class="hstack gap-4">
+                                        <div class="p-sm-2">
+                                            <h7>Persona Contacto de la Compañía</h7>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <input asp-for="Nombre_PersonaCompañia" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+
+                                        <div class="vr"></div>
+                                        <div class="p-sm-2">
+                                            <h7>Tipo Actualización</h7>
+                                        </div>
+                                        <div class="form-group col-3">
+                                            <select asp-for="TipoActualizacion" class="form-select" aria-label="tipoActualizacion">
+                                                <option selected></option>
+                                                <option value="cambioRS">Cambio Razón Social</option>
+                                                <option value="cambioDdesp">Cambio dirección de despacho</option>
+                                                <option value="creacionNuevaSurc">Creación nueva(s) sucursal(es)</option>
+                                                <option value="ActualizacionGral">Actualización general</option>
+
+                                            </select>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+
+
+
+                    </div>
+                    <br />
+                    <div class="card  mb-3  mx-0 ">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                2. IDENTIFICACIÓN DEL TERCERO
+                                <div class="card-subtitle border-0">
+                                    <p style="text-align:center;font-size:12px"><strong>Por favor relacione los datos indicados en el RUT</strong></p>
+
+                                </div>
+                            </h5>
+                            
+
+                        </div>
+
+                        <div class="container-fluid  mx-0 px-0">
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+
+                                        <div class="row g-4">
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Natural">Persona Natural</option>
+                                                        <option value="Juridica">Persona Jurídica</option>
+                                                    </select>
+                                                    <label for="floatingSelect"><strong>Tipo Persona</strong></label>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Nit">Nit</option>
+                                                        <option value="C.C">Cédula Ciudadanía</option>
+                                                        <option value="C.E">Cédula Extranjería</option>
+                                                        <option value="Pas">Pasaporte</option>
+                                                        <option value="Pep">Permiso Especial de Permanencia</option>
+                                                    </select>
+                                                    <label for="floatingSelect"><strong>Tipo Identificación</strong></label>
+                                                </div>
+
+
+                                            </div>
+
+                                            <div class="col-md">
+                                                <div class="form-floating">
+                                                    <input type="number" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                                    <label for="floatingInputGrid">Número Identificación</label>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                   
+                                      @*  <div class="p-sm-2">
+                                            <h6>Nombres</h6>
+                                        </div>
+
+                                        <div class="col-4" style="padding-left:23px">
+                                            <input asp-for="NombresPersona" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+
+                                        <div class="vr"></div>
+                                        <div class="p-sm-2">
+                                            <h6>Apellidos</h6>
+                                        </div>
+
+                                        <div class="col-4">
+                                            <input asp-for="ApellidosPersona" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+*@
+
+
+                                    <div class="input-group">
+                                        <span class="input-group-text"><strong>Nombre(s) y Apellido(s)</strong></span>
+                                        <input type="text" aria-label="First name" class="form-control">
+                                        <input type="text" aria-label="Last name" class="form-control">
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                  @*  <div class="hstack gap-4">
+                                      
+
+
+                                    </div>*@
+                                       @* <div class="p-sm-2 col-sm-1">
+                                            <h6>Razon Social</h6>
+                                        </div>
+
+                                        <div class="col-sm-10">
+                                            <input asp-for="RazonSocial" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>*@
+
+
+
+
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-default"><strong>Razón Social</strong></span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                  @*  <div class="hstack gap-4">
+
+                                    </div>*@
+                                       @* <div class="p-sm-2 col-sm-1">
+                                            <h6>Dirección</h6>
+                                        </div>
+
+                                        <div class="col-sm-4">
+                                            <input asp-for="DireccionTercero" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+                                        <div class="vr"></div>
+                                        <div class="p-sm-2 col-sm-1">
+                                            <h6>Barrio</h6>
+                                        </div>
+                                       
+                                        <div class="col-sm-4">
+                                            <input asp-for="BarrioTercero" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>*@
+
+
+
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><strong>Dirección</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Barrio</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Departamento</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Ciudad</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                    </div>
+
+
+
+
+                                </div>
+
+                            </div>
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                   @* <div class="hstack gap-4">
+
+                                    </div>*@
+
+                                      @*
+                                        <div class="p-sm-2">
+                                            <h6>Departamento</h6>
+                                        </div>
+
+                                        <div class="col-sm-3" style="padding-left:9px">
+                                            <input asp-for="DepartamentoTercero" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+
+                                        <div class="vr"></div>
+                                        <div class="p-sm-2">
+                                            <h6>Ciudad</h6>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <input asp-for="CiudadTercero" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+*@
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><strong>Número Celular</strong></span>
+                                        <input type="tel" class="form-control" placeholder="" aria-label="">
+
+                                        <span class="input-group-text"><strong>Teléfono</strong></span>
+                                        <input type="tel" class="form-control" placeholder="" aria-label="">
+
+                                        <span class="input-group-text"><strong>Email</strong></span>
+                                        <input type="email" class="form-control" placeholder="" aria-label="">
+                                        
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+                         
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                   @* <div class="hstack gap-4">
+
+                                    </div>*@
+
+                                      @*  <div class="p-sm-2">
+                                            <h6>Nombre Representante Legal</h6>
+                                        </div>
+                                        
+                                        <div class="col-sm-9">
+                                            <input asp-for="NombreRepresentanteLegal" type="text" class="form-control" id="" placeholder="">
+
+                                        </div>
+                                        *@
+
+
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" id="inputGroup-sizing-default"><strong>Representante Legal</strong></span>
+                                        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="row">
+
+
+
+                                <div class="card-body mx-2 px-0">
+                                <div class="hstack gap-2">
+
+
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Si</th>
+                                                <th scope="col">No</th>
+                                              
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" >¿Desempeña funciones públicas?</th>
+                                              
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
+                                                        <label class="form-check-label" for=""></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
+                                                        <label class="form-check-label" for=""></label>
+                                                    </div>
+
+                                                </td>
+
+
+                                            </tr>
+                                          
+                                        </tbody>
+                                        <thead>
+                                            <tr>
+                                                <th scope="col"></th>
+                                                <th scope="col">Si</th>
+                                                <th scope="col">No</th>
+
+                                            </tr>
+
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row" rowspan="3">¿Administra o maneja recursos públicos?</th>
+
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
+                                                        <label class="form-check-label" for=""></label>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
+                                                        <label class="form-check-label" for=""></label>
+                                                    </div>
+
+                                                </td>
+
+
+                                            </tr>
+
+                                        </tbody>
+                                    </table> 
+
+                                    <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" colspan="4">Cargo público que desempeña</th>
+                                           
+                                        </tr>
+
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row" rowspan="2">Año de vinculación</th>
+
+                                            <td>                                             
+                                               <input class="form-control" type="text" name="" id="" value="">
+                                                                                                
+                                            </td>
+                                                    <th scope="row" rowspan="2">Año de desvinculación</th>
+                                            <td>
+                                                
+                                                    <input class="form-control" type="text" name="" id="" value="">
+                                                   
+                                             
+
+                                            </td>
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                                </div>
+                                </div>
+
+
+
+
+                            </div>
+
+
+
+                        </div>
+
+
+
+
+
+                    </div>
+
+                    <div class=" card mb-3 mx-0">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                3. DATOS DE CONTACTO
+                                <div class="card-subtitle border-0">
+                                    <p style="text-align:center;font-size:12px"><strong>Información de la persona que realizará la(s) compra(s)</strong></p>
+
+                                </div>
+                            </h5>
+
+
+
+                        </div>
+
+                            <div class="container-fluid mx-0 px-0">
+
+                                <div class="row">
+                                    <div class="card-body mx-2 px-0">
+
+
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text"><strong>Persona contacto</strong></span>
+                                            <input type="text" class="form-control" placeholder="" aria-label="">
+
+                                            <span class="input-group-text"><strong>Cargo</strong></span>
+                                            <input type="text" class="form-control" placeholder="" aria-label="">
+
+                                            <span class="input-group-text"><strong>Email</strong></span>
+                                            <input type="email" class="form-control" placeholder="" aria-label="">
+
+                                            <span class="input-group-text"><strong>Celular</strong></span>
+                                            <input type="tel" class="form-control" placeholder="" aria-label="">
+                                        </div>
+
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+                    </div>
+                    <div class=" card mb-3 mx-0">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                4. INFORMACIÓN SOCIAL
+                                <div class="card-subtitle border-0">
+                                    <p style="text-align:center;font-size:12px"><strong>Únicamente para persona jurídica</strong></p>
+
+                                </div>
+                            </h5>
+
+                        </div>
+
+                        <div class="container-fluid mx-0 px-0">
+
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+
+                                    <table class="table table-bordered caption-top">
+                                        <caption style="text-align:center">Relacione los accionistas y/o socios que tengan el 5% o más del capital social de la compañía o de los rendimientos y utilidades.</caption>
+                                        <thead >
+                                            <tr>
+                                                <th scope="col" class="titulo_tabla" rowspan="2">Razón social / Nombre completo de socio o accionista</th>
+                                                <th scope="col" class="titulo_tabla" rowspan="1" colspan="2">Persona Natural(PN)<br />Persona Jurídica(PJ)</th>                                          
+                                                <th scope="col" class="titulo_tabla" rowspan="2">Tipo ID</th>
+                                                <th scope="col" class="titulo_tabla" rowspan="2">Número de documento de identificación</th>
+                                                <th scope="col" class="titulo_tabla" rowspan="2">% de Participación</th>
+                                                <th scope="col" class="titulo_tabla" colspan="2">¿Desempeña funciones públicas?</th>
+                                                <th scope="col" class="titulo_tabla" colspan="2">¿Administra o maneja recursos públicos?</th>
+                                            </tr>
+                                            <tr>
+                                                <th scope="col" class="res_tabla">PN</th>                                           
+                                                <th scope="col" class="res_tabla">PJ</th>                                               
+                                                <th scope="col" class="res_tabla">No</th>
+                                                <th scope="col" class="res_tabla">Si</th>
+                                                <th scope="col" class="res_tabla">Si</th>
+                                                <th scope="col" class="res_tabla">No</th>
+
+
+                                            </tr>
+                                          
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td><input class="form-control" type="text" style="font-size:13px" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona1" id="" value="PN"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona1" id="" value="PJ"></td>
+                                                @*<td><input class="form-control" type="text" /></td>*@
+                                                <td>
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Nit">Nit</option>
+                                                        <option value="C.C">Cédula Ciudadanía</option>
+                                                        <option value="C.E">Cédula Extranjería</option>
+                                                        <option value="Pas">Pasaporte</option>
+                                                        <option value="Pep">Permiso Especial de Permanencia</option>
+                                                    </select>
+                                                </td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica1" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica1" id="" value="no"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos1" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos1" id="" value="no"></td>
+                                            </tr>
+
+                                            <tr>
+                                                <td><input class="form-control" type="text" style="font-size:13px" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                @*<td><input class="form-control" type="text" /></td>*@
+                                                <td>
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Nit">Nit</option>
+                                                        <option value="C.C">Cédula Ciudadanía</option>
+                                                        <option value="C.E">Cédula Extranjería</option>
+                                                        <option value="Pas">Pasaporte</option>
+                                                        <option value="Pep">Permiso Especial de Permanencia</option>
+                                                    </select>
+                                                </td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos2" id="" value="no"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input class="form-control" type="text" style="font-size:13px" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona3" id="" value="PN"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona3" id="" value="PJ"></td>
+                                               @* <td><input class="form-control" type="text" /></td>*@
+                                                <td>
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Nit">Nit</option>
+                                                        <option value="C.C">Cédula Ciudadanía</option>
+                                                        <option value="C.E">Cédula Extranjería</option>
+                                                        <option value="Pas">Pasaporte</option>
+                                                        <option value="Pep">Permiso Especial de Permanencia</option>
+                                                    </select>
+                                                </td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica3" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica3" id="" value="no"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos3" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos3" id="" value="no"></td>
+                                            </tr>
+                                            <tr>
+                                                <td><input class="form-control" type="text" style="font-size:13px" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona4" id="" value="PN"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona4" id="" value="PJ"></td>
+                                                @*<td><input class="form-control" type="text" /></td>*@
+                                                <td>
+                                                    <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <option selected></option>
+                                                        <option value="Nit">Nit</option>
+                                                        <option value="C.C">Cédula Ciudadanía</option>
+                                                        <option value="C.E">Cédula Extranjería</option>
+                                                        <option value="Pas">Pasaporte</option>
+                                                        <option value="Pep">Permiso Especial de Permanencia</option>
+                                                    </select>
+                                                </td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td><input class="form-control" type="number" /></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica4" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="funcionPublica4" id="" value="no"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos4" id="" value="si"></td>
+                                                <td style="text-align:center"><input class="form-check-input" type="radio" name="manejaRecursos4" id="" value="no"></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div class="card mb-3 mx-0">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                5. DATOS SUCURSAL DE DESPACHO
+                                
+                            </h5>
+                        </div>
+
+                        <div class="container-fluid mx-0 px-0">
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                    <div class="row g-4">
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                    <option selected></option>
+                                                    <option value="si">Si</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                                <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="number" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                                <label for="floatingInputGrid"><strong>Cantidad de Sucursales</strong></label>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                                <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><strong>Dirección despacho</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Barrio</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                    </div>
+
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><strong>Departamento</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Ciudad</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text"><strong>Celular</strong></span>
+                                        <input type="tel" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Teléfono</strong></span>
+                                        <input type="tel" class="form-control" placeholder="" aria-label="">
+                                        <span class="input-group-text"><strong>Email factura electrónica</strong></span>
+                                        <input type="email" class="form-control" placeholder="" aria-label="">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="card mb-3 mx-0">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                6. DECLARACIÓN VOLUNTARIA DE ORIGEN DE FONDOS Y AUTORIZACIÓN PARA VERIFICACIÓN DE INFORMACIÓN
+
+                            </h5>
+                        </div>
+                        <div class="container-fluid mx-0 px-0">
+                            <div class="row">
+                                <p style="text-align:justify;font-size:13px">
+                                    Yo, identificado como aparece al pie de mi firma, actuando en nombre propio y/o en mi condición de representante legal de la sociedad que represento, igualmente aquí relacionada, 
+                                    de manera voluntaria declaro que todo lo aquí consignado es cierto, veraz y confiable, y que los recursos que entregue a Agropecuaria Aliar S.A., son producto de operaciones lícitas 
+                                    del giro ordinario de mis negocios, a la luz de la normatividad legal aplicable; así como todas mis actividades, transacciones y operaciones, resaltando que ninguna de ellas se enmarca 
+                                    dentro de las contempladas en el Código Penal Colombiano como Lavado de Activos y/o Financiación del Terrorismo - LA/FT, ni los fondos que de ellas se derivan se encuentran 
+                                    relacionados con Lavado de Activos y/o Financiación del Terrorismo - LA/FT. Para efectos de comprobación de lo aquí escrito, <strong>autorizo a Agropecuaria Aliar S.A</strong>. a consultar,
+                                    verificar e indagar cualquier lista restrictiva y/o vinculante que exista para tal fin. En virtud de lo anterior la empresa podrá dar por terminada cualquier relación comercial, 
+                                    contractual o de negocios con el suscrito, si así lo considera, teniendo en cuenta el análisis de riesgos y el resultado del proceso de Debida Diligencia en conocimiento de contrapartes.
+                                </p>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                        <label class="form-check-label" for="gridCheck" style="text-align:justify;font-size:13px">
+                                            Autoriza verificación de información.
+                                        </label>
+                                        <div class="invalid-feedback spanValidated">
+                                            Aceptar Autorización
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="card mb-3 mx-0">
+                        <div class="row">
+                            <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
+                                7. TOMA DE AUTORIZACIÓN EXPRESA PARA EL TRATAMIENTO DE DATOS PERSONALES
+
+                            </h5>
+                        </div>
+                        <div class="container-fluid mx-0 px-0">
+                            <div class="row">
+                                <p style="text-align:justify;font-size:13px">
+                                    <strong>AGROPECUARIA ALIAR S.A</strong>, identificada con nit 890.207.037-1, será el Responsable del tratamiento y, en tal virtud, podrá recolectar, almacenar, usar, suprimir, transferir, transmitir, actualizar y procesar para
+                                    las siguientes finalidades: 
+                                    <strong>1.</strong> Realizar creación en las bases de datos de la compañía, actualizar sus datos cuando la compañía lo considere necesario o cuando el cliente lo requiera, inactivarlo una vez terminada la relación comercial,
+                                    utilizar la información de contacto para gestionar los temas administrativos de la relación comercial con nuestros clientes, generar facturación electrónica, realizar actividades de fidelización, telemercadeo 
+                                    y/o E-mailing (Correo electrónico), gestionar todo lo referente con servicio al cliente (SAC) para gestionar sus peticiones, quejas, reclamos, sugerencias y felicitaciones (PQRSF), gestión y envío de domicilios, 
+                                    divulgación de campañas publicitarias, información de nuestros productos, información promocional, ofertas, eventos y actividades de mercadeo. 
+                                    <strong>2.</strong> Realizar verificaciones en listas inhibitorias de Lavado de activos, financiación del terrorismo, financiamiento de la proliferación de armas de destrucción masiva, corrupción y soborno transnacional y/o cualquier
+                                    otra verificación que defina la compañía para la vinculación de clientes. 
+                                    <strong>3.</strong> Realizar grabaciones de voz en los diferentes procesos comerciales tales como:
+                                    la toma de pedidos desde Call Center, el manejo de procesos de servicio al cliente y el monitoreo y control de devoluciones; grabaciones que se realizan con fines de garantizar la calidad en el servicio. 
+                                    <strong>4.</strong> Invitarlos a participar  y enviarles información de actividades de tipo comercial, mercadeo y/o publicidad, eventos, campañas, lanzamientos, cursos, concursos, sorteos, envío de información publicitaria,
+                                    actividades de investigación de mercados y demás que sean organizadas y/o patrocinadas por la compañía, de manera directa o a través de la transmisión de sus datos a las agencias de mercadeo y publicidad que 
+                                    determine la compañía. 
+                                    <strong>5.</strong> Usar y publicar todo el material biométrico derivado de las actividades de mercadeo y publicidad que puede incluir imágenes, videos, testimonios, entrevistas, eventos masivos y contenido
+                                    editorial para ser incluidos en medios digitales, masivos, de comunicación corporativa, redes sociales, página web o cualquiera que determine la compañía. 6. Transmitir la información a la empresa encargada 
+                                    del almacenamiento, gestión documental y custodia de las bases de datos físicas, cuando la compañía lo considere necesario, bajo los estándares de seguridad y confidencialidad establecidos por la compañía.
+                                </p>
+                                <p style="text-align:justify;font-size:13px">
+                                    Manifiesto que me informaron que en caso de recolección de mi información sensible como lo son fotos y videograbaciones, tengo derecho a entregar o no los datos solicitados. Entiendo que las fotos y videograbaciones 
+                                    son datos sensibles que afectan la intimidad del Titular o cuyo uso indebido puede generar discriminación. Manifiesto que me informaron que los datos sensibles que se recolectarán serán utilizados para 
+                                    la siguiente finalidad: usar y publicar todo el material biométrico derivado de las actividades de mercadeo y publicidad que puede incluir imágenes, videos, testimonios, entrevistas, eventos masivos y contenido 
+                                    editorial para ser incluidos en medios digitales, masivos, de comunicación corporativa, redes sociales, página web o cualquiera que determine la compañía. Sus derechos como titular del dato son los previstos en la 
+                                    Constitución y en la Ley 1581 de 2012, especialmente los siguientes: 
+                                    <strong>a)</strong> Acceder en forma gratuita a los datos proporcionados que hayan sido objeto de tratamiento.
+                                    <strong>b)</strong> Solicitar la actualización y rectificación de su información frente a datos parciales, inexactos, incompletos, fraccionados, que induzcan a error, o a aquellos cuyo tratamiento esté prohibido o no haya sido autorizado.
+                                    <strong>c)</strong> Solicitar prueba de la autorización otorgada.
+                                    <strong>d)</strong> Presentar ante la Superintendencia de Industria y Comercio (SIC) quejas por infracciones a lo dispuesto en la normatividad vigente. 
+                                    <strong>e)</strong> Revocar la autorización y/o solicitar la supresión del dato, a menos que exista un deber legal o contractual que haga imperativo conservar la información. 
+                                    <strong>f)</strong> Abstenerse de responder las preguntas sobre datos sensibles o sobre datos de las niñas, niños y adolescentes. El titular podrá ejercer sus derechos,
+                                    especialmente a presentar consultas y reclamos relacionados con el tratamiento de los datos personales y el ejercicio de los derechos mencionados en esta autorización, a través de comunicación dirigida al 
+                                    correo protecciondedatos@aliar.com.co, o por medio de los siguientes canales: °Línea de atención nacional: 018000112699. °Celular: 3229140572. Lo anterior, para dar cumplimiento a los artículos 14 y 15 de la Ley 1581 de 2012.
+                                    Por todo lo anterior, he otorgado mi consentimiento a <strong>AGROPECUARIA ALIAR S.A.</strong> para que trate mi información personal de acuerdo con la Política de Tratamiento de Datos Personales dispuesta por la sociedad en medio electrónico
+                                    publicada en la página web www.aliar.com.co y que me dio a conocer antes de recolectar mis datos personales. Manifiesto que la presente autorización me fue solicitada y puesta de presente antes de entregar mis datos y que la 
+                                    suscribo de forma libre y voluntaria una vez leída en su totalidad.
+                                </p>
+                            </div>
+
+                            <div class="row">
+
+                                <div class="col-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                                        <label class="form-check-label" for="gridCheck" style="text-align:justify;font-size:13px">
+                                            Autoriza el tratamiento de datos personales.
+                                        </label>
+                                        <div class="invalid-feedback spanValidated">
+                                            Aceptar Autorización
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                      
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+

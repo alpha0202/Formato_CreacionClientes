@@ -43,13 +43,7 @@
                                                     <div class="col-sm-12">
                                                         <h6 style="text-align:center">FORMATO CREACIÓN DE CLIENTES</h6>
                                                     </div>
-                                                   @* <div class="vr"></div>
-                                                    <div class="col-sm-2">
-                                                        <h6 class="" style="text-align:center">Número</h6>
-                                                    </div>
-                                                    <div class="vr"></div>
-                                                    <div class="form-group col-sm-2">
-                                                    </div>*@
+                                               
 
                                                 </div>
 
@@ -61,8 +55,8 @@
                                         <div class="card-body mx-0 px-0">
                                             <div class="col-sm-12">
                                                 <div class="row">
-                                                    <div class="hstack g-2 border" style="background-color: lightseagreen">
-                                                        <div class="col-sm-3 mx-0 px-0" style="background-color: lightseagreen">
+                                                    <div class="hstack g-2 border" >
+                                                        <div class="col-sm-3 mx-0 px-0" >
                                                             <h6 class="" style="text-align:center;">Código</h6>
                                                             <p style="text-align:center;">CUM-FT-015 Y 016</p>
                                                         </div>
@@ -77,7 +71,7 @@
                                                             <p style="text-align:center">CUM-PR-002</p>
                                                         </div>
                                                         <div class="col-1 vr" ></div>
-                                                        <div class="col-sm-3" style="background-color: lightseagreen">
+                                                        <div class="col-sm-3" >
                                                             <h6 class="" style="text-align:center">Fecha de Emisión</h6>
                                                             <p class="" style="text-align:center">@DateTime.Today.ToString("dd-MMM-yyyy")</p>
                                                         </div>
@@ -109,82 +103,65 @@
 
                         <div class="container-fluid  mx-0 px-0">
                             <div class="row">
-                                <div class="card-body mx-0 px-0">
-                                    <div class="hstack gap-2">
-                                        <div class="p-sm-2 mx-0 px-0 col-2">
-                                            <h7>Fecha Diligenciamiento</h7>
-                                        </div>
-                                        
-                                        <div class="p-sm-1 mx-0 px-0">
+                                <div class="card-body mx-2 px-0">
+                                  
 
-                                            <div class="p-sm-2">
-                                                <div id=""><strong>@DateTime.Today.ToString("dd-MMM-yyyy")</strong></div>
+                                    <div class="row g-4">
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input type="text" class="form-control" id="floatingInputGrid" placeholder=""  value="@DateTime.Today.ToString("dd-MMMM-yyyy")" disabled>
+                                                <label for="floatingInputGrid" style="font-size:14px;"><strong>Fecha Diligenciamiento</strong></label>
+                                                @*<span style="font-size:13px"><strong>@DateTime.Today.ToString("dd-MMM-yyyy")</strong></span>*@
                                             </div>
-                                            @*<input asp-for="FechaRegistro" class="form-control me-auto disabled" id="fecha_reg" placeholder="@DateTime.Today.ToString("dd-MMM-yyyy") > *@
                                         </div>
 
-                                     
 
-
-
-
-                                        <div class="col-1">
-                                        </div>
-                                        <div class="vr"></div>
-                                        <div class="col-1">
-
-                                        </div>
-                                        <div class="p-sm-2 col-2">
-                                            <h7>Tipo Operación</h7>
-                                        </div>
-
-                                        <div class="form-group p-sm-2 col-4">
-                                            <select asp-for="TipoOperacion" class="form-select" aria-label="tipoSolicitud">
-                                                <option selected></option>
-                                                <option value="VInicial">Vinculación Inicial</option>
-                                                <option value="Actualizacion">Actualización</option>
-
-                                            </select>
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                    <option selected></option>
+                                                    <option value="vinculacion">Vinculación Inicial</option>
+                                                    <option value="actualizacion">Actualización</option>
+                                                </select>
+                                                <label for="floatingSelect"><strong>Tipo Operación</strong></label>
+                                            </div>
 
                                         </div>
-                                       
-                                                                            
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                    <option selected></option>
+                                                    <option value="cambioRS">Cambio Razón Social</option>
+                                                    <option value="cambioDdesp">Cambio dirección de despacho</option>
+                                                    <option value="creacionNuevaSurc">Creación nueva(s) sucursal(es)</option>
+                                                    <option value="ActualizacionGral">Actualización general</option>
+                                                </select>
+                                                <label for="floatingSelect"><strong>Tipo Actualización</strong></label>
+                                            </div>
+
+
+                                        </div>
+
                                       
 
                                     </div>
+
+
+
 
                                 </div>
                             </div>
                            
 
                             <div class="row">
-                                <div class="card-body mx-0 px-0">
-                                    <div class="hstack gap-4">
-                                        <div class="p-sm-2">
-                                            <h7>Persona Contacto de la Compañía</h7>
+                                <div class="card-body mx-2 px-0">
+                                    <div class="col-md">
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                            <label for="floatingInputGrid" ><strong>Persona de contacto de la compañia</strong></label>
                                         </div>
-
-                                        <div class="col-4">
-                                            <input asp-for="Nombre_PersonaCompañia" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-
-                                        <div class="vr"></div>
-                                        <div class="p-sm-2">
-                                            <h7>Tipo Actualización</h7>
-                                        </div>
-                                        <div class="form-group col-3">
-                                            <select asp-for="TipoActualizacion" class="form-select" aria-label="tipoActualizacion">
-                                                <option selected></option>
-                                                <option value="cambioRS">Cambio Razón Social</option>
-                                                <option value="cambioDdesp">Cambio dirección de despacho</option>
-                                                <option value="creacionNuevaSurc">Creación nueva(s) sucursal(es)</option>
-                                                <option value="ActualizacionGral">Actualización general</option>
-
-                                            </select>
-
-                                        </div>
-
                                     </div>
 
                                 </div>
@@ -249,7 +226,7 @@
                                             <div class="col-md">
                                                 <div class="form-floating">
                                                     <input type="number" class="form-control" id="floatingInputGrid" placeholder="" value="">
-                                                    <label for="floatingInputGrid">Número Identificación</label>
+                                                <label for="floatingInputGrid"><strong>Número Identificación</strong></label>
                                                 </div>
                                             </div>
 
@@ -263,29 +240,10 @@
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
                                    
-                                      @*  <div class="p-sm-2">
-                                            <h6>Nombres</h6>
-                                        </div>
-
-                                        <div class="col-4" style="padding-left:23px">
-                                            <input asp-for="NombresPersona" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-
-                                        <div class="vr"></div>
-                                        <div class="p-sm-2">
-                                            <h6>Apellidos</h6>
-                                        </div>
-
-                                        <div class="col-4">
-                                            <input asp-for="ApellidosPersona" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-*@
-
+                                    
 
                                     <div class="input-group">
-                                        <span class="input-group-text"><strong>Nombre(s) y Apellido(s)</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Nombre(s) y Apellido(s)</strong></span>
                                         <input type="text" aria-label="First name" class="form-control">
                                         <input type="text" aria-label="Last name" class="form-control">
                                     </div>
@@ -295,28 +253,11 @@
 
                             </div>
 
-
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
-                                  @*  <div class="hstack gap-4">
-                                      
-
-
-                                    </div>*@
-                                       @* <div class="p-sm-2 col-sm-1">
-                                            <h6>Razon Social</h6>
-                                        </div>
-
-                                        <div class="col-sm-10">
-                                            <input asp-for="RazonSocial" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>*@
-
-
-
-
+                                 
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-default"><strong>Razón Social</strong></span>
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-size:13px"><strong>Razón Social</strong></span>
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                     </div>
 
@@ -327,40 +268,21 @@
 
                             </div>
 
-
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
-                                  @*  <div class="hstack gap-4">
-
-                                    </div>*@
-                                       @* <div class="p-sm-2 col-sm-1">
-                                            <h6>Dirección</h6>
-                                        </div>
-
-                                        <div class="col-sm-4">
-                                            <input asp-for="DireccionTercero" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-                                        <div class="vr"></div>
-                                        <div class="p-sm-2 col-sm-1">
-                                            <h6>Barrio</h6>
-                                        </div>
-                                       
-                                        <div class="col-sm-4">
-                                            <input asp-for="BarrioTercero" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>*@
-
-
+                                  
 
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text"><strong>Dirección</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Dirección</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Barrio</strong></span>
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Departamento</strong></span>
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Ciudad</strong></span>
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Ciudad</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
                                     </div>
 
@@ -373,38 +295,15 @@
 
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
-                                   @* <div class="hstack gap-4">
-
-                                    </div>*@
-
-                                      @*
-                                        <div class="p-sm-2">
-                                            <h6>Departamento</h6>
-                                        </div>
-
-                                        <div class="col-sm-3" style="padding-left:9px">
-                                            <input asp-for="DepartamentoTercero" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-
-                                        <div class="vr"></div>
-                                        <div class="p-sm-2">
-                                            <h6>Ciudad</h6>
-                                        </div>
-
-                                        <div class="col-sm-3">
-                                            <input asp-for="CiudadTercero" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-*@
+                                  
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text"><strong>Número Celular</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Número Celular</strong></span>
                                         <input type="tel" class="form-control" placeholder="" aria-label="">
 
-                                        <span class="input-group-text"><strong>Teléfono</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
                                         <input type="tel" class="form-control" placeholder="" aria-label="">
 
-                                        <span class="input-group-text"><strong>Email</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Email</strong></span>
                                         <input type="email" class="form-control" placeholder="" aria-label="">
                                         
                                     </div>
@@ -413,28 +312,13 @@
                                 </div>
 
                             </div>
-
                          
-
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
-                                   @* <div class="hstack gap-4">
-
-                                    </div>*@
-
-                                      @*  <div class="p-sm-2">
-                                            <h6>Nombre Representante Legal</h6>
-                                        </div>
-                                        
-                                        <div class="col-sm-9">
-                                            <input asp-for="NombreRepresentanteLegal" type="text" class="form-control" id="" placeholder="">
-
-                                        </div>
-                                        *@
-
+                                 
 
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text" id="inputGroup-sizing-default"><strong>Representante Legal</strong></span>
+                                        <span class="input-group-text" id="inputGroup-sizing-default" style="font-size:13px"><strong>Representante Legal</strong></span>
                                         <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
                                     </div>
 
@@ -442,122 +326,115 @@
 
                             </div>
 
-
                             <div class="row">
 
 
+                                <div class="col-sm-6">
 
-                                <div class="card-body mx-2 px-0">
-                                <div class="hstack gap-2">
+                                    <div class="card-body mx-2 px-0">
 
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th scope="col" class="titulo_tabla" style="font-size:13px;text-align:center" rowspan="2">¿Desempeña funciones públicas?</th>
+                                                    <th scope="col" style="font-size:13px;text-align:center">Si</th>
+                                                    <th scope="col" style="font-size:13px;text-align:center">No</th>
 
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Si</th>
-                                                <th scope="col">No</th>
-                                              
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" >¿Desempeña funciones públicas?</th>
-                                              
-                                                <td>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
-                                                        <label class="form-check-label" for=""></label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="form-check form-check-inline">
-                                                        <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
-                                                        <label class="form-check-label" for=""></label>
-                                                    </div>
-
-                                                </td>
-
-
-                                            </tr>
-                                          
-                                        </tbody>
-                                        <thead>
-                                            <tr>
-                                                <th scope="col"></th>
-                                                <th scope="col">Si</th>
-                                                <th scope="col">No</th>
-
-                                            </tr>
-
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row" rowspan="3">¿Administra o maneja recursos públicos?</th>
-
-                                                <td>
-                                                    <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
-                                                        <label class="form-check-label" for=""></label>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <div class="form-check form-check-inline">
-                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
-                                                        <label class="form-check-label" for=""></label>
-                                                    </div>
-
-                                                </td>
-
-
-                                            </tr>
-
-                                        </tbody>
-                                    </table> 
-
-                                    <table class="table table-bordered">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" colspan="4">Cargo público que desempeña</th>
-                                           
-                                        </tr>
-
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th scope="row" rowspan="2">Año de vinculación</th>
-
-                                            <td>                                             
-                                               <input class="form-control" type="text" name="" id="" value="">
-                                                                                                
-                                            </td>
-                                                    <th scope="row" rowspan="2">Año de desvinculación</th>
-                                            <td>
-                                                
-                                                    <input class="form-control" type="text" name="" id="" value="">
+                                                </tr>
+                                                <tr>
+                                                    <th style="text-align:center" scope="col">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
+                                                            <label class="form-check-label" for=""></label>
+                                                        </div>
+                                                    </th>
+                                                    <th style="text-align:center" scope="col">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="" value="">
+                                                            <label class="form-check-label" for=""></label>
+                                                        </div>
+                                                    </th>
                                                    
+                                                </tr>
+
+                                                <tr>
+                                                    <th scope="col" class="titulo_tabla" style="font-size:13px;text-align:center" rowspan="2">¿Administra o maneja recursos públicos?</th>
+                                                    <th scope="col" style="font-size:13px;text-align:center">Si</th>
+                                                    <th scope="col" style="font-size:13px;text-align:center">No</th>
+                                                </tr>
+                                                <tr>
+                                                    <th style="text-align:center" scope="col">
+                                                        <div class="form-check form-check-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
+                                                            <label class="form-check-label" for=""></label>
+                                                        </div>
+                                                    </th>
+                                                    <th style="text-align:center" scope="col">
+                                                        <div class="form-check form-check-inline" style="text-align:center">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="">
+                                                            <label class="form-check-label" for=""></label>
+                                                        </div>
+                                                    </th>
+                                                   
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
                                              
 
-                                            </td>
+                                            </tbody>
+                                     
+                                        </table>
+
+                                    </div>
 
 
-                                        </tr>
-
-                                    </tbody>
-                                </table>
                                 </div>
-                                </div>
 
+                                <div class="col-sm-6">
+
+                                    <div class="card-body mx-2 px-0">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr style="text-align:center">
+                                                    <th scope="col" colspan="4" style="font-size:13px">Cargo público que desempeña</th>
+
+                                                </tr>
+
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row" rowspan="2" style="font-size:13px">Año de vinculación</th>
+
+                                                    <td>
+                                                        <input class="form-control" type="number" min="1900" max="2099" step="1" value="@DateTime.Now.Year">
+
+                                                    </td>
+                                                    <th scope="row" rowspan="2" style="font-size:13px">Año de desvinculación</th>
+                                                    <td>
+
+                                                        <input class="form-control" type="number" min="1900" max="2099" step="1" value="@DateTime.Now.Year">
+
+
+
+                                                    </td>
+
+
+                                                </tr>
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+
+                                </div>
 
 
 
                             </div>
 
 
-
                         </div>
-
 
 
 
@@ -578,33 +455,34 @@
 
                         </div>
 
-                            <div class="container-fluid mx-0 px-0">
+                        <div class="container-fluid mx-0 px-0">
 
-                                <div class="row">
-                                    <div class="card-body mx-2 px-0">
-
-
-                                        <div class="input-group mb-2">
-                                            <span class="input-group-text"><strong>Persona contacto</strong></span>
-                                            <input type="text" class="form-control" placeholder="" aria-label="">
-
-                                            <span class="input-group-text"><strong>Cargo</strong></span>
-                                            <input type="text" class="form-control" placeholder="" aria-label="">
-
-                                            <span class="input-group-text"><strong>Email</strong></span>
-                                            <input type="email" class="form-control" placeholder="" aria-label="">
-
-                                            <span class="input-group-text"><strong>Celular</strong></span>
-                                            <input type="tel" class="form-control" placeholder="" aria-label="">
-                                        </div>
+                            <div class="row">
+                                <div class="card-body mx-2 px-0">
 
 
+                                    <div class="input-group mb-2">
+                                        <span class="input-group-text" style="font-size:13px"><strong>Persona contacto</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Cargo</strong></span>
+                                        <input type="text" class="form-control" placeholder="" aria-label="">
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Email</strong></span>
+                                        <input type="email" class="form-control" placeholder="" aria-label="">
+
+                                        <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
+                                        <input type="tel" class="form-control" placeholder="" aria-label="">
                                     </div>
+
 
                                 </div>
 
                             </div>
+
+                        </div>
                     </div>
+
                     <div class=" card mb-3 mx-0">
                         <div class="row">
                             <h5 class="card-title border-bottom text-white  mx-0 px-0" style="text-align:center; background-color:firebrick">
@@ -637,8 +515,8 @@
                                             <tr>
                                                 <th scope="col" class="res_tabla">PN</th>                                           
                                                 <th scope="col" class="res_tabla">PJ</th>                                               
-                                                <th scope="col" class="res_tabla">No</th>
                                                 <th scope="col" class="res_tabla">Si</th>
+                                                <th scope="col" class="res_tabla">No</th>
                                                 <th scope="col" class="res_tabla">Si</th>
                                                 <th scope="col" class="res_tabla">No</th>
 
@@ -651,7 +529,6 @@
                                                 <td><input class="form-control" type="text" style="font-size:13px" /></td>
                                                 <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona1" id="" value="PN"></td>
                                                 <td style="text-align:center"><input class="form-check-input" type="radio" name="tipoPersona1" id="" value="PJ"></td>
-                                                @*<td><input class="form-control" type="text" /></td>*@
                                                 <td>
                                                     <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
                                                         <option selected></option>
@@ -794,9 +671,9 @@
                                 <div class="card-body mx-2 px-0">
 
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text"><strong>Dirección despacho</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Barrio</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
                                     </div>
 
@@ -806,9 +683,9 @@
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text"><strong>Departamento</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Ciudad</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Ciudad</strong></span>
                                         <input type="text" class="form-control" placeholder="" aria-label="">
 
                                     </div>
@@ -818,11 +695,11 @@
                             <div class="row">
                                 <div class="card-body mx-2 px-0">
                                     <div class="input-group mb-2">
-                                        <span class="input-group-text"><strong>Celular</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
                                         <input type="tel" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Teléfono</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
                                         <input type="tel" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text"><strong>Email factura electrónica</strong></span>
+                                        <span class="input-group-text" style="font-size:13px"><strong>Email factura electrónica</strong></span>
                                         <input type="email" class="form-control" placeholder="" aria-label="">
 
                                     </div>
@@ -942,6 +819,64 @@
 
                       
                     </div>
+
+                    <div class="card mb-3 mx-0">
+
+                        <div class="container-fluid mx-0 px-0">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="card-body mx-2 px-0">
+
+                                       
+
+                                        <div class="form-floating mb-2">
+                                            <input type="text" class="form-control" id="floatingInputValue" placeholder="" value="" style="height:140px">
+                                            <label for="floatingInputValue" style="font-size:13px">Firma del solicitante (Persona natural) o Representante legal (Persona Jurídica). Esta firma autoriza y aprueba lo contenido en las secciones 6 y 7, del presente formato.</label>
+                                        </div>
+
+                                       
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" style="font-size:13px">En representación de</span>
+                                            <input type="text" class="form-control" placeholder="" aria-label="">
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="card-body mx-2 px-0">
+                                      
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" style="font-size:13px">Nombres y Apellidos </span>
+                                            <input type="text" class="form-control" placeholder="" aria-label="">
+                                           
+
+                                        </div>
+
+                                        <div class="input-group mb-4">
+                                            <span class="input-group-text" style="font-size:13px">Documento Identidad</span>
+                                            <input type="number" class="form-control" placeholder="" aria-label="">
+                                        </div>
+
+                                        <div class="form-floating">
+                                            <input type="text" class="form-control" id="floatingInputValue" placeholder="" value="" style="height:80px">
+                                            <label for="floatingInputValue" style="font-size:13px">Observaciones</label>
+                                        </div>
+
+                                    </div>
+
+                                  
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
 
                 </div>
             </form>

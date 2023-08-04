@@ -63,3 +63,8 @@
     align-content: center;
     vertical-align: middle;
 }
+
+
+.uppercase {
+    text-transform: uppercase;
+} 

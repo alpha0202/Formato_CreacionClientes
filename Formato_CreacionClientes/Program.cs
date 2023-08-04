@@ -1,7 +1,31 @@
+using System.Data.SqlClient;
+using System.Data;
+using Formato_CreacionClientes.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddMvc();
+builder.Services.AddHttpClient();
+
+
+
+//sqlserver Unoee
+var dbConnectionStringUnoee = builder.Configuration.GetConnectionString("conexionUnoee");
+//builder.Services.AddSingleton<IDbConnection>((sp) => new SqlConnection(dbConnectionStringUnoee));
+
+
+//MySql servidor para integraciones signRequest
+var dbMySqlConexion = builder.Configuration.GetConnectionString("mySqlConexion");
+builder.Services.AddTransient<IDbConnection>((sp) => new MySqlConnector.MySqlConnection(dbMySqlConexion));
+
+
+
+
+//inyectar data creacion clientes
+builder.Services.AddScoped<ICreacionClientesRepository, CreacionClientesRepository>();
+
 
 var app = builder.Build();
 

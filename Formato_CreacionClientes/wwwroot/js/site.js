@@ -128,9 +128,6 @@ const RestablecerOpciones = () => {
 
 
 
-
-
-
 $(document).ready(function() {
 
     $('input[type=radio][name=inlineRadioOptions]').change(function()  {
@@ -164,11 +161,187 @@ $(document).ready(function() {
     });
 
 
+    SumarPorcentajes();
 
 
+    $("#cboDepartamento").change(function () {
 
+        //cargarCiudades();
+        LLamarCiudad();
+    });
+
+
+    //cargarDeparamentos();
 
 });
+
+
+function SumarPorcentajes() {
+    // Obtener los elementos input
+    const inputs = $('input.porcentaje');
+
+    // Agregar un event listener a cada input
+    inputs.on('input', () => {
+        // Sumar los valores de los inputs
+        const total = Array.from(inputs).reduce((acc, input) => acc + Number(input.value), 0);
+
+        // Verificar si la suma es igual a 100
+        if (total === 100) {
+            alert('La suma es igual a 100');
+        }
+    });
+}
+
+function cargarCiudades() {
+
+    //var html = '<label>Ciudad*</label> <select class="form-control" id="cboCiudad" onchange="cargarBarrio();"></select>';
+    //$("#DivCiudadC").html("");
+    //$("#DivCiudadC").append(html);
+
+
+    $("#cboCiudad option").remove();
+    $("#cboCiudad").append('<option value=""></option>');
+
+    var departamento = $("#cboDepartamento option:selected").val();
+
+    if (departamento != "") {
+        $.ajax({
+            url: '/Clientes/GetCiudades',
+            data: { "departamento": departamento },
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            dataType: 'json',
+            success: function (data) {
+
+                jQuery.each(data, function (index, itemData) {
+
+                    $("#cboCiudad").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+                });
+
+
+
+                //$('#cboCiudad').combobox({
+                //    clearIfNoMatch: true
+                //});
+
+                /* $('#cboCiudad').combobox({
+                     clearIfNoMatch: true
+                 });*/
+
+            },
+
+            error: function (request, message, error) {
+
+                alert('error' + message.status);
+            }
+        });
+    }
+
+}
+
+function cargarDeparamentos() {
+    //var pais = $("#cboPais option:selected").val();
+    $("#cboDepartamento option").remove();
+    $("#cboDepartamento").append('<option value=""></option>');
+
+    $.ajax({
+        url: '@Url.Action("GetDepartamento", "Clientes")',
+        data: {},
+        crossDomain: true,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function (data) {
+
+            jQuery.each(data, function (index, itemData) {
+
+                $("#cboDepartamento").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+            $('#cboDepartamento').combobox({
+                clearIfNoMatch: true
+            });
+
+            /* $('#cboCiudad').combobox({
+                 clearIfNoMatch: true
+             });*/
+
+        },
+
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
+
+
+}
+
+function cargarPaises() {
+
+    $("#cboPais option").remove();
+    $("#cboPais").append('<option value=""></option>');
+
+    $.ajax({
+        url: '@Url.Action("GetPaises", "Home")',
+        data: {},
+        crossDomain: true,
+        type: 'POST',
+        processData: false,
+        contentType: false,
+        success: function (data) {
+
+            jQuery.each(data, function (index, itemData) {
+
+                $("#cboPais").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+            $('#cboPais').combobox({
+                clearIfNoMatch: true
+            });
+
+            /* $('#cboCiudad').combobox({
+                 clearIfNoMatch: true
+             });*/
+
+        },
+
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
+
+
+}
+
+function LLamarCiudad() {
+
+    $("#cboCiudad").append('<option value=""></option>');
+    var dpto = $("#cboDepartamento option:selected").val();
+
+        $.ajax({
+            //url: '@Url.Action("GetCiudades", "Clientes")',
+            url: '/Clientes/GetCiudades',
+            //data: JSON.stringify({ "departamento": departamento }),
+            data: { "dpto": dpto },
+            crossDomain: true,
+            contentType: 'application/json; charset=utf-8',
+            type: 'POST',
+            dataType: 'json',
+            success: function (data) {
+               alert(data);
+            },
+            error: function (request, message, error) {
+
+                alert(message);
+            }
+        });
+
+}
 
 
 

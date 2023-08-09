@@ -14,6 +14,11 @@ const tipo_operacion = document.querySelector("#tipoOperacion");
 const seccionTipo_actualizacion = document.querySelector("#seccionTipoActualizacion");
 const tipo_actualizacion = document.querySelector("#TipoActualizacion");
 const seccionCambio_direccion = document.querySelector("#seccionCambioDir");
+const selectCambio_dir = document.querySelector("#cambioDireccion");
+const cantidades_sucursales = document.querySelector("#cantidadSucursales");
+const seccionDireccion_Ant = document.querySelector("#seccionDirAnterior");
+const secciones_Sucursales_Despacho = document.querySelector("#secciones_SucursalesDespacho");
+const seccion_cantidadSucursales = document.querySelector("#secc_cantidadesSucursales");
 const seccion_Legal = document.querySelector("#seccionLegal");
 const seccion_RepLegal = document.querySelector("#seccionRepLegal");
 const seccion_Natural = document.querySelector("#seccionPerNatural");
@@ -85,9 +90,32 @@ tipo_operacion.addEventListener("change", () => {
 
         seccionTipo_actualizacion.classList.add("d-none");
         seccionCambio_direccion.classList.add("d-none");
+        seccionDireccion_Ant.classList.add("d-none");
+        selectCambio_dir.value = "";
         tipo_actualizacion.required = false;
     }
 });
+
+
+selectCambio_dir.addEventListener("change", () => {
+    if (selectCambio_dir.value === "si") {
+        seccionDireccion_Ant.classList.remove("d-none");
+    }
+    else {
+        seccionDireccion_Ant.classList.add("d-none");
+    }
+});
+
+cantidades_sucursales.addEventListener("change", () => {
+
+   
+    var numeroVeces = $('#cantidadSucursales').val();
+    ClonarElementos(seccion_cantidadSucursales, numeroVeces);
+
+
+});
+
+
 
 
 
@@ -170,10 +198,114 @@ $(document).ready(function() {
         LLamarCiudad();
     });
 
+    $("#cboDptoSucursal").change(function () {
 
-    //cargarDeparamentos();
+        
+        LLamarCiudadSucursales();
+    });
+
+    //document.querySelectorAll('input').forEach(input => {
+    //    input.addEventListener('change', event => {
+    //        console.log(event.target);
+    //    });
+    //});
+
+    //$(".addButton").on("click", addRow);
+    
 
 });
+
+
+function addRow(event) {
+    var rowId = $(event.target).attr("id");
+    //var $row = $("id", rowId);
+    var row =  document.querySelector("#secc_cantidadesSucursales1");
+    var $newRow = $(row).clone(true, true);
+
+
+    var newId = "row_" + Math.random().toString(36).substring(2, 15);
+
+    $newRow.attr("id", newId);
+    $newRow.find(".addButton").attr("id", newId);
+    $newRow.find("input").val("");
+
+    row.after($newRow);
+}
+
+
+
+function ClonarElementos(elemento, veces) {
+
+    //nroAjustado = veces - 1;
+    nroAjustado = veces;
+    //seccion_cantidadSucursales.classList.remove("d-none");
+
+    var idCambioDireccion = $('.cambioDirSucursal').attr('id');
+    const selectCambioDir = $('select.cambioDirSucursal');
+
+    var idDireccAnterior = $('.dirAnteriorSuc').attr('id');
+    const inputDirAnterior = $('input.dirAnteriorSuc');
+
+    var idDireccNueva = $('.direccNuevaSuc').attr('id');
+    const inputDirNueva = $('input.direccNuevaSuc');
+
+    var idBarrioSucursal = $('.barrioDespSucursal').attr('id');
+    const inputBarrioSucursal = $('input.barrioDespSucursal');
+
+    var idCboDpto = $('.comboDepartamentoSucursales').attr('id');
+    const selectDpto = $('select.comboDepartamentoSucursales');
+
+    var idCboCiudad = $('.comboCiudadSucursales').attr('id');
+    const selectCiudad = $('select.comboCiudadSucursales');
+
+    var idCelularSucursal = $('.celSucursal').attr('id');
+    const inputCelular = $('input.celSucursal');
+
+    var idTelefonoSucursal = $('.telSucursal').attr('id');
+    const inputTelefono = $('input.telSucursal');
+
+    var idEmailSucursalFac = $('.emailSucursal').attr('id');
+    const inputEmailSucursal = $('input.emailSucursal');
+
+
+    for (let i = 0; i < nroAjustado; i++) {
+        var newId = "secc_cantidadesSucursales_" + i;
+        var newIdCD = idCambioDireccion + i;
+        var newIdDA = idDireccAnterior + i;
+        var newIdDN = idDireccNueva + i;
+        var newIdBarrio = idBarrioSucursal + i;
+        var newIdCboDpto = idCboDpto + i;
+        var newIdCboCiudad = idCboCiudad + i;
+        var newIdCelular = idCelularSucursal + i;
+        var newIdTelefono = idTelefonoSucursal + i;
+        var newIdEmail = idEmailSucursalFac + i;
+
+
+        $(elemento).clone(true, true).appendTo("#destinoClone");
+        //$(elemento).attr("id", newId);
+        $("#destinoClone").find("#secc_cantidadesSucursales").attr("id", newId);
+        //$(elemento).removeClass("d-none");
+        $(elemento).find(selectCambioDir).attr("id", newIdCD);
+        $(elemento).find(inputDirAnterior).attr("id", newIdDA);
+        $(elemento).find(inputDirNueva).attr("id", newIdDN);
+        $(elemento).find(inputBarrioSucursal).attr("id", newIdBarrio);
+        $(elemento).find(selectDpto).attr("id", newIdCboDpto);
+        $(elemento).find(selectCiudad).attr("id", newIdCboCiudad);
+        $(elemento).find(inputCelular).attr("id", newIdCelular);
+        $(elemento).find(inputTelefono).attr("id", newIdTelefono);
+        $(elemento).find(inputEmailSucursal).attr("id", newIdEmail);
+        //if (veces == 1) {
+
+        //    //seccion_cantidadSucursales.classList.remove("d-none");
+        //}
+        //else {
+        //}
+    }
+
+
+
+}
+
 
 
 function SumarPorcentajes() {
@@ -320,29 +452,73 @@ function cargarPaises() {
 
 function LLamarCiudad() {
 
+    $("#cboCiudad option").remove();
     $("#cboCiudad").append('<option value=""></option>');
     var dpto = $("#cboDepartamento option:selected").val();
+    //var dpto = "SANTANDER";
 
-        $.ajax({
-            //url: '@Url.Action("GetCiudades", "Clientes")',
-            url: '/Clientes/GetCiudades',
-            //data: JSON.stringify({ "departamento": departamento }),
-            data: { "dpto": dpto },
-            crossDomain: true,
-            contentType: 'application/json; charset=utf-8',
-            type: 'POST',
-            dataType: 'json',
-            success: function (data) {
-               alert(data);
-            },
-            error: function (request, message, error) {
+    $.ajax({
+        //url: '@Url.Action("GetCiudades", "Clientes")',
+        //data: JSON.stringify({ "departamento": departamento }),
+        //crossDomain: true,
+        //contentType: 'application/json; charset=utf-8',
+        //dataType: 'json',
+        url: '/Clientes/GetCiudades',
+        data: { Dpto: dpto },
+        type: 'POST',
+        success: function (data) {
+            jQuery.each(data, function (index, itemData) {
 
-                alert(message);
-            }
-        });
+                $("#cboCiudad").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+          
+
+
+        },
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
 
 }
 
+function LLamarCiudadSucursales() {
+
+    $("#cboCiudadSucursal option").remove();
+    $("#cboCiudadSucursal").append('<option value=""></option>');
+    var dpto = $("#cboDptoSucursal option:selected").val();
+    //var dpto = "SANTANDER";
+
+    $.ajax({
+        //url: '@Url.Action("GetCiudades", "Clientes")',
+        //data: JSON.stringify({ "departamento": departamento }),
+        //crossDomain: true,
+        //contentType: 'application/json; charset=utf-8',
+        //dataType: 'json',
+        url: '/Clientes/GetCiudades',
+        data: { Dpto: dpto },
+        type: 'POST',
+        success: function (data) {
+            jQuery.each(data, function (index, itemData) {
+
+                $("#cboCiudadSucursal").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+
+
+
+        },
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
+
+}
 
 
 //limpiar options select tipoIdentificación

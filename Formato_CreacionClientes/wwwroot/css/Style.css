@@ -67,4 +67,21 @@
 
 .uppercase {
     text-transform: uppercase;
-} 
+}
+
+
+.buttonPlus {
+    width: 20px;
+    height: 20px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: central;
+    margin: 5px 10px;
+    border-radius: 3px;
+}
+
+.addButton {
+    background: green;
+}
+  

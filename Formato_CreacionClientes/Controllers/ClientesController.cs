@@ -117,8 +117,6 @@ namespace Formato_CreacionClientes.Controllers
 
 
 
-      
-
         public List<Combo> GetDepartamento()
         {
             List<Combo> respuesta = new List<Combo>();
@@ -168,15 +166,16 @@ namespace Formato_CreacionClientes.Controllers
 
 
         [HttpPost]
-        public ActionResult GetCiudades(string dpto)
+        public ActionResult GetCiudades(string Dpto)
         {
 
             List<Combo> respuesta = new List<Combo>();
             DataTable dt = new DataTable();
-            string sql = "SELECT UPPER(f013_descripcion) AS Ciudad FROM UNOEEALIAR.dbo.t013_mm_ciudades INNER JOIN UNOEEALIAR.dbo.t012_mm_deptos on f013_id_depto = f012_id  WHERE f013_id_pais = '169' and UPPER(f012_descripcion) = '" + dpto + "'" +
+            string sql = "SELECT UPPER(f013_descripcion) AS Ciudad FROM UNOEEALIAR.dbo.t013_mm_ciudades INNER JOIN UNOEEALIAR.dbo.t012_mm_deptos on f013_id_depto = f012_id  WHERE f013_id_pais = '169' and UPPER(f012_descripcion) = '" + Dpto + "'" +
                           " ORDER BY f013_descripcion";
 
             dt = Datos.ObtenerDataTable(sql);
+            //dt.Rows.RemoveAt(0);    
 
             foreach (DataRow dr in dt.Rows)
             {

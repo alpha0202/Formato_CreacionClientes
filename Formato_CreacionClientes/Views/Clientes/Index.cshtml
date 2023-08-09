@@ -298,7 +298,7 @@
 
                                         <label  class="input-group-text" for="" style="font-size:13px"><strong>Departamento</strong></label>
                                         @*<span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>*@
-                                        <select asp-for="Departamento_Tercero"  class="form-select"   asp-items="@ViewData["combo"] as SelectList" id="cboDepartamento">
+                                        <select asp-for="Departamento_Tercero" class="form-select"  asp-items="@ViewData["combo"] as SelectList" id="cboDepartamento">
                                             <option value=""></option>
                                         </select>
                                       
@@ -307,7 +307,7 @@
 
                                         <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
                                         @*<span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>*@
-                                        <select asp-for=Ciudad_Tercero type="" class="form-select" asp-items="@ViewData["comboCiudad"] as SelectList" id="cboCiudad">
+                                        <select asp-for=Ciudad_Tercero type="" class="form-select"  id="cboCiudad">
                                             <option value=""></option>
                                         </select>
 
@@ -729,10 +729,21 @@
                         </div>
 
                         <div class="container-fluid mx-0 px-0">
-                            <div class="row">
+                            <div class="row" id="secciones_SucursalesDespacho">
                                 <div class="card-body mx-2 px-0">
                                     <div class="row g-4">
-                                        <div class="col-md d-none" id="seccionCambioDir">
+
+                                        <div class="col-md">
+                                            <div class="form-floating">
+                                                <input asp-for=Cantidad_Sucursal_Despacho type="number" min="0" class="form-control" id="cantidadSucursales" placeholder="" value="">
+                                                <label for="floatingInputGrid"><strong>Cantidad de Sucursales</strong></label>
+                                            </div>
+                                        </div>
+
+                                       
+
+
+                                       @* <div class="col-md d-none" id="seccionCambioDir">
                                             <div class="form-floating">
                                                 <select class="form-select" id="cambioDireccion" aria-label="Floating label select example">
                                                     <option selected></option>
@@ -742,65 +753,109 @@
                                                 <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
                                             </div>
 
-                                        </div>
+                                        </div>*@
 
-                                        <div class="col-md">
-                                            <div class="form-floating">
-                                                <input asp-for=Cantidad_Sucursal_Despacho type="number" min="0" class="form-control" id="floatingInputGrid" placeholder="" value="">
-                                                <label for="floatingInputGrid"><strong>Cantidad de Sucursales</strong></label>
-                                            </div>
-                                        </div>
 
-                                        <div class="col-md">
+                                        @*<div class="col-md d-none" id="seccionDirAnterior">
                                             <div class="form-floating">
                                                 <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                                <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
+                                            </div>
+                                        </div>*@
+
+                                    </div>
+
+                                </div>
+                            </div>
+                            
+                            @*secciones que deben repetirse segun el número de sucursales*@
+                            <div class="" id="secc_cantidadesSucursales">
+
+                                <div class="card-body mx-2 px-0">
+                                    <div class="row bg-light">
+                                       
+
+                                        <div class="col-sm-6 d-none bg-light" id="seccionCambioDir">
+                                            <div class="form-floating">
+                                                <select class="form-select cambioDirSucursal" id="cambioDireccion" aria-label="Floating label select example">
+                                                    <option selected></option>
+                                                    <option value="si">Si</option>
+                                                    <option value="no">No</option>
+                                                </select>
+                                                <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
+                                            </div>
+
+                                        </div>
+
+
+                                        <div class="col-sm-6 d-none bg-light" id="seccionDirAnterior">
+                                            <div class="form-floating">
+                                                <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal">
                                                 <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
                                             </div>
                                         </div>
 
                                     </div>
+                                </div>
+
+                                <div class="row bg-light">
+                                    <div class="card-body mx-2 px-0">
+
+                                        <div class="input-group mb-2">
+                                            <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
+                                            <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal">
+
+                                            <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
+                                            <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal">
+                                        </div>
+
+                                    </div>
 
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="card-body mx-2 px-0">
+                                <div class="row bg-light">
+                                    <div class="card-body mx-2 px-0">
+                                        <div class="input-group mb-2">
 
-                                    <div class="input-group mb-2">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
-                                        <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
-                                        <input asp-for="Barrio_Despacho" type="text" class="form-control" placeholder="" aria-label="">
+
+                                            <label class="input-group-text" for="" style="font-size:13px"><strong>Departamento</strong></label>
+
+                                            <select asp-for="Departamento_Despacho" class="form-select comboDepartamentoSucursales" asp-items="@ViewData["combo"] as SelectList" id="cboDptoSucursal">
+                                                <option value=""></option>
+                                            </select>
+
+
+
+                                            <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
+
+                                            <select asp-for=Ciudad_Despacho type="" class="form-select comboCiudadSucursales" id="cboCiudadSucursal">
+                                                <option value=""></option>
+                                            </select>
+
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="row bg-light border-bottom">
+                                    <div class="card-body mx-2 px-0">
+                                        <div class="input-group mb-2">
+
+                                            <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
+                                            <input asp-for=Celular_Despacho type="number" min="0" maxlength="10" class="form-control celSucursal" id="celularSucursal">
+
+                                            <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
+                                            <input asp-for="Telefono_Despacho" type="number" min="0" maxlength="12" class="form-control telSucursal" id="telefonoSucursal">
+
+                                            <span class="input-group-text" style="font-size:13px"><strong>Email factura electrónica</strong></span>
+                                            <input asp-for=Email_FactElectronica_Despacho type="email" class="form-control emailSucursal" id="emailFactSucursal">
+
+                                        </div>
                                     </div>
 
                                 </div>
 
                             </div>
-                            <div class="row">
-                                <div class="card-body mx-2 px-0">
-                                    <div class="input-group mb-2">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>
-                                        <input asp-for=Departamento_Despacho type="text" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Ciudad</strong></span>
-                                        <input asp-for=Ciudad_Despacho type="text" class="form-control" placeholder="" aria-label="">
 
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                <div class="card-body mx-2 px-0">
-                                    <div class="input-group mb-2">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
-                                        <input asp-for=Celular_Despacho type="tel" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
-                                        <input asp-for="Telefono_Despacho" type="tel" class="form-control" placeholder="" aria-label="">
-                                        <span class="input-group-text" style="font-size:13px"><strong>Email factura electrónica</strong></span>
-                                        <input asp-for=Email_FactElectronica_Despacho type="email" class="form-control" placeholder="" aria-label="">
-
-                                    </div>
-                                </div>
-
-                            </div>
+                            <div class="" id="destinoClone"></div>
                         </div>
 
                     </div>

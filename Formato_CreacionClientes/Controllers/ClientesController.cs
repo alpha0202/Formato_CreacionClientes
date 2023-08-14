@@ -34,7 +34,7 @@ namespace Formato_CreacionClientes.Controllers
         public ActionResult Index()
         {
 
-            ViewData["combo"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(GetDepartamento(), "Value", "Descripcion");
+            ViewData["combo"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(GetDpto(), "Value", "Descripcion");
 
             return View();
         }
@@ -117,7 +117,7 @@ namespace Formato_CreacionClientes.Controllers
 
 
 
-        public List<Combo> GetDepartamento()
+        public List<Combo> GetDpto()
         {
             List<Combo> respuesta = new List<Combo>();
             DataTable dt = new DataTable();
@@ -138,10 +138,39 @@ namespace Formato_CreacionClientes.Controllers
             }
             return respuesta;
         }
+
+
+        [HttpPost]
+        public ActionResult GetDepartamento()
+        {
+
+            List<Combo> respuesta = new List<Combo>();
+            DataTable dt = new DataTable();
+            string sql = "SELECT UPPER(f012_descripcion) AS Ciudad" +
+                         "  FROM UNOEEALIAR.dbo.t012_mm_deptos" +
+                         " WHERE f012_id_pais = '169'" +
+                         " ORDER BY f012_descripcion";
+
+            dt = Datos.ObtenerDataTable(sql);
+
+            foreach (DataRow dr in dt.Rows)
+            {
+                Combo res = new Combo();
+                res.Value = dr[0].ToString();
+                res.Descripcion = dr[0].ToString();
+                respuesta.Add(res);
+
+            }
+
+            return Json(respuesta);
+        }
+
+
+
+
         //[HttpPost]
         //public List<Combo> GetCiudades(string dpto)
         //{
-
 
 
         //    List<Combo> respuesta = new List<Combo>();

@@ -35,13 +35,6 @@ tipo_persona.addEventListener("change", () => {
         seccion_Legal.classList.add("required");
         seccion_RepLegal.classList.add("required");
         EstablecerOpcionJuridica();
-       
-        //document.querySelector('#estados_file').required = true;
-        //document.querySelector('#existencias_file').required = true;
-        //document.querySelector('#repLegalName').required = true;
-        //document.querySelector('#cargoRepLegal').required = true;
-        //document.querySelector('#email_reprLegal').required = true;
-
     }
     else {
         seccion_Legal.classList.add("d-none");
@@ -50,30 +43,17 @@ tipo_persona.addEventListener("change", () => {
         seccion_Legal.classList.remove("required");
         seccion_RepLegal.classList.remove("required");
         RestablecerOpciones();
-        //document.getElementById('sociedadAccionistasSi').checked = false;
-        //document.querySelector('#estados_file').required = false;
-        //document.querySelector('#existencias_file').required = false;
-        //document.querySelector('#repLegalName').required = false;
-        //document.querySelector('#cargoRepLegal').required = false;
-        //document.querySelector('#email_reprLegal').required = false;
+
     }
     if (tipo_persona.value === "Natural") {
         seccion_Natural.classList.remove("d-none");
         EstablecerOpcionesNatural();
-        //document.querySelector('#certIngr_file').required = true;
-        //document.querySelector('#tarjPro_file').required = true;
-        //document.querySelector('#antec_file').required = true;
-        //document.querySelector('#estadoFinanciero').classList.add("invisible");
-        //document.querySelector('#certificadoExistencia').classList.add("invisible");
+
     }
     else {
         seccion_Natural.classList.add("d-none");
-       
-        //document.querySelector('#certIngr_file').required = false;
-        //document.querySelector('#tarjPro_file').required = false;
-        //document.querySelector('#antec_file').required = false;
-        //document.querySelector('#estadoFinanciero').classList.remove("invisible");
-        //document.querySelector('#certificadoExistencia').classList.remove("invisible");
+
+
     }
 
 });
@@ -106,14 +86,23 @@ selectCambio_dir.addEventListener("change", () => {
     }
 });
 
-cantidades_sucursales.addEventListener("change", () => {
-
-   
-    var numeroVeces = $('#cantidadSucursales').val();
-    ClonarElementos(seccion_cantidadSucursales, numeroVeces);
+//cantidades_sucursales.addEventListener("change", () => {
 
 
-});
+
+//    var numeroVeces = $('#cantidadSucursales').val();
+//    //if ($('#destinoClone').length) {
+//    //    $('#destinoClone').remove();
+
+//    //}
+//    //else {
+//    //    $('#secc_cantidadesSucursales').after('<div id="destinoClone"></div>')
+//    //}
+
+//    ClonarElementos(seccion_cantidadSucursales, numeroVeces);
+
+
+//});
 
 
 
@@ -156,7 +145,12 @@ const RestablecerOpciones = () => {
 
 
 
-$(document).ready(function() {
+$(document).ready(function () {
+
+    let selected_CboDpto_Id;
+    let selectedDpto;
+    let selected_CboCiudad_Id;
+    let selectedCiudad;
 
     $('input[type=radio][name=inlineRadioOptions]').change(function()  {
         if (this.value == "si")
@@ -194,44 +188,278 @@ $(document).ready(function() {
 
     $("#cboDepartamento").change(function () {
 
-        //cargarCiudades();
+       
         LLamarCiudad();
     });
 
     $("#cboDptoSucursal").change(function () {
 
         
-        LLamarCiudadSucursales();
+        //LLamarCiudadSucursales();
     });
 
-    //document.querySelectorAll('input').forEach(input => {
-    //    input.addEventListener('change', event => {
-    //        console.log(event.target);
-    //    });
+   
+
+    //verificar los input de secciones clonadas
+    $('#secc_cantidadesSucursales input').on('change',function () {
+        var selectedInputId = $(this).attr('id');
+        var valorInput = $('#'+selectedInputId).val();
+        console.log('Selected ID:',selectedInputId);
+        console.log(valorInput);
+    })
+
+
+  
+    //detectar cambio departamento sección clonados
+    //$('.comboDepartamentoSucursales').on('change', function () {
+    //    selected_CboDpto_Id = $(this).attr('id');
+    //    selectedDpto = $("#" + selected_CboDpto_Id).val();
+    //    console.log('Selected ID:', selected_CboDpto_Id);
+    //    console.log(selectedDpto);
+
     //});
 
-    //$(".addButton").on("click", addRow);
-    
+    //detectar combo seleccionado sección clonados
+    $(".comboCiudadSucursales").click( function () {
+        selected_CboCiudad_Id = $(this).attr('id');
+        selectedCiudad = $("#" + selected_CboCiudad_Id).val();
+        console.log('Selected ID:', selected_CboCiudad_Id);
+        console.log(selectedCiudad);
+        //$(selected_CboCiudad_Id).val('');
+        LLamarCiudadSucursalesClone(selectedDpto,selected_CboCiudad_Id);
 
+    });
+
+
+   
+
+    //////////////////////////////////////////////////////////////////////////////
+    var iCnt = 0;
+
+
+    var container = document.createElement('div');
+    container.classList.add('container-fluid', 'mx-0', 'px-0');
+    $(container).attr("id","SeccionCantidad_Sucursales");
+
+    var containerSucursal = document.createElement('div');
+    $(containerSucursal).attr("id", "tb");
+   
+
+
+
+    $("#btAdd").click(function () {
+        if (iCnt <= 4) {
+            iCnt = iCnt + 1;
+
+
+            const filaUno = `<div class="tb${iCnt}" id="tb${iCnt}">
+                             <div class="card-body mx-2 px-0">
+                              <div class="row bg-light">
+                                <div class="col-sm-6 bg-light" id="seccionCambioDir${iCnt}">
+                                  <div class="form-floating">
+                                    <select class="form-select cambioDirSucursal" id="cambioDireccion${iCnt}">
+                                      <option selected></option>
+                                      <option value="si">Si</option>
+                                      <option value="no">No</>
+                                    </select>
+                                    <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
+                                  </div>
+                                </div>
+                                <div class="col-sm-6  bg-light direccionAnterior" id="seccionDirAnterior${iCnt}">
+                                  <div class="form-floating">
+                                    <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal${iCnt}" disabled>
+                                    <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>`
+
+
+            const filaDos = `<div class="tb${iCnt}" id="tb${iCnt}">
+                            <div class="row bg-light">
+                               <div class="card-body mx-2 px-0">
+                                <div class="input-group mb-2 datosSucursales">                          
+                                 <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
+                                 <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal${iCnt}">
+                                
+                                 <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
+                                 <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal${iCnt}">
+                                </div>
+                             </div>
+                            </div>`
+
+
+            const filaTres = `<div class="tb${iCnt}" id="tb${iCnt}">
+                            <div class="row bg-light">
+                            <div class="card-body mx-2 px-0">
+                             <div class="input-group mb-2 datosSucursales">
+                                <label class="input-group-text" for="" style="font-size:13px"><strong>Departamento</strong></label>
+                                <input asp-for=Departamento_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboDptoSucursal${iCnt}">
+
+                             
+                             <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
+                             <input asp-for=Ciudad_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboCiudadSucursal${iCnt}">
+                               
+                            </div>
+                     </div>
+                     </div>`
+
+
+            const filaCuatro = `<div class="tb${iCnt}" id="tb${iCnt}">
+                                <div class="row bg-light border-bottom">
+                                    <div class="card-body mx-2 px-0">
+                                    <div class="input-group mb-2 datosSucursales">
+                                        
+                                        <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
+                                        <input asp-for=Celular_Despacho type="number" min="0" maxlength="10" class="form-control celSucursal" id="celularSucursal${iCnt}">
+                                        
+                                        <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
+                                        <input asp-for="Telefono_Despacho" type="number" min="0" maxlength="12" class="form-control telSucursal" id="telefonoSucursal${iCnt}">
+                                       
+                                        <span class="input-group-text" style="font-size:13px"><strong>Email factura electrónica</strong></span>
+                                        <input asp-for=Email_FactElectronica_Despacho type="email" class="form-control emailSucursal" id="emailFactSucursal${iCnt}">
+                                      </div>
+                                     </div>
+                                    </div>
+                               </div>
+                               </div>`
+
+
+
+
+
+            // Añadir caja de texto.
+            $(container).append(filaUno).append(filaDos).append(filaTres).append(filaCuatro);
+            //'<select type=text class="form-select" id=tb' + iCnt + " " + 'value="Elemento de Texto ' + iCnt +'" ></select>'
+
+            if (iCnt == 1) {
+                var divSubmit = $(document.createElement("div"));
+                $(divSubmit).append(
+                    '<input type=button class="bt" onclick="GetTextValue()"' + "id=btSubmit value=Enviar />"
+                );
+            }
+
+            $("#main").after(container, divSubmit);
+        } else {
+            //se establece un limite para añadir elementos, 20 es el limite
+
+            $(container).append("<label>Limite Alcanzado</label>");
+            $("#btAdd").attr("class", "disabled");
+            $("#btAdd").attr("disabled", "disabled");
+        }
+    });
+
+    $("#btRemove").click(function () {
+        // Elimina un elemento por click
+        if (iCnt != 0) {
+            $(".tb" + iCnt).remove();
+            iCnt = iCnt - 1;
+
+        }
+
+        if (iCnt == 0) {
+            //$(container).empty();
+
+            //$(container).remove();
+            $("#btSubmit").remove();
+            $("#btAdd").removeAttr("disabled");
+            $("#btAdd").attr("class", "enabled");
+        }
+    });
+
+    $("#btRemoveAll").click(function () {
+        // Elimina todos los elementos del contenedor
+
+        $(container).empty();
+        $(container).remove();
+        $("#btSubmit").remove();
+        $("#destinoClone").empty();
+        iCnt = 0;
+        $("#btAdd").removeAttr("disabled");
+        $("#btAdd").attr("class", "bt");
+        $("#btAdd").attr("class", "btn");
+        $("#btAdd").attr("class", "btn-outline-primary");
+       
+       
+    });
+
+    BuscarInputs();
+
+    //detectar cambio dirección sucursal-sección clonada
+    $(".cambioDirSucursal").click(function () {
+        var selected_CboId = $(this).attr('id');
+        var valCboCambio = $("#" + selected_CboId).val();
+        const seccionDireAnterior = $('div.direccionAnterior').attr('id');
+        console.log('Selected ID:', selected_CboId);
+        console.log(valCboCambio);
+
+        if (valCboCambio.value === "si") {
+            $("#" + seccionDireAnterior).removeClass("d-none");
+        }
+        else {
+            $("#" + seccionDireAnterior).addClass("d-none");
+        }
+
+    });
+
+
+   
+  
 });
 
 
-function addRow(event) {
-    var rowId = $(event.target).attr("id");
-    //var $row = $("id", rowId);
-    var row =  document.querySelector("#secc_cantidadesSucursales1");
-    var $newRow = $(row).clone(true, true);
+
+/// Obtiene los valores de los textbox al dar click en el boton "Enviar"
+var divValue,
+    values = "";
+
+function GetTextValue() {
+    BuscarInputs();
+    const inputs = $('datosSucursales input');
+    $(divValue).empty();
+    $(divValue).remove();
+    values = "";
+    $(inputs).each(function () {
+        divValue = $(document.createElement("div")).css({
+            padding: "5px",
+            width: "200px",
+        });
+        values += this.value + "<br />";
+    });
+
+    $('datosSucursales input').each(function () {
+        console.log($(this).val());
+    });
+
+    $('datosSucursales select').each(function () {
+        console.log($(this).val());
+    });
 
 
-    var newId = "row_" + Math.random().toString(36).substring(2, 15);
 
-    $newRow.attr("id", newId);
-    $newRow.find(".addButton").attr("id", newId);
-    $newRow.find("input").val("");
-
-    row.after($newRow);
+    $(divValue).append("<p><b>Tus valores añadidos</b></p>" + values);
+    $("#destinoClone").append(divValue);
 }
 
+
+function BuscarInputs() {
+    var columnas = [];
+
+    $('.datosSucursales').find('input').each(function () {
+        //console.log($(this).val());
+        var inputValue = $(this).val();
+        columnas.push(inputValue);
+        console.log(columnas);
+    })
+};
+
+
+/////////////////////////////////
+
+function RecorrerInputs() {
+    const inputs = $('input.' + `tb${iCnt}`);
+    console.log(inputs);
+}
 
 
 function ClonarElementos(elemento, veces) {
@@ -245,6 +473,7 @@ function ClonarElementos(elemento, veces) {
 
     var idDireccAnterior = $('.dirAnteriorSuc').attr('id');
     const inputDirAnterior = $('input.dirAnteriorSuc');
+    const seccionDireAnterior = $('direccionAnterior').attr('id');
 
     var idDireccNueva = $('.direccNuevaSuc').attr('id');
     const inputDirNueva = $('input.direccNuevaSuc');
@@ -281,16 +510,17 @@ function ClonarElementos(elemento, veces) {
         var newIdEmail = idEmailSucursalFac + i;
 
 
-        $(elemento).clone(true, true).appendTo("#destinoClone");
+        $(elemento).clone(true,true).appendTo("#destinoClone");
         //$(elemento).attr("id", newId);
         $("#destinoClone").find("#secc_cantidadesSucursales").attr("id", newId);
         //$(elemento).removeClass("d-none");
         $(elemento).find(selectCambioDir).attr("id", newIdCD);
         $(elemento).find(inputDirAnterior).attr("id", newIdDA);
+        $(elemento).find(seccionDireAnterior).attr("id", newIdDA);
         $(elemento).find(inputDirNueva).attr("id", newIdDN);
         $(elemento).find(inputBarrioSucursal).attr("id", newIdBarrio);
-        $(elemento).find(selectDpto).attr("id", newIdCboDpto);
-        $(elemento).find(selectCiudad).attr("id", newIdCboCiudad);
+        $(elemento).find(selectDpto).attr("id", newIdCboDpto);       
+        $(elemento).find(selectCiudad).attr("id", newIdCboCiudad);       
         $(elemento).find(inputCelular).attr("id", newIdCelular);
         $(elemento).find(inputTelefono).attr("id", newIdTelefono);
         $(elemento).find(inputEmailSucursal).attr("id", newIdEmail);
@@ -301,7 +531,7 @@ function ClonarElementos(elemento, veces) {
         //else {
         //}
     }
-
+    $(elemento).remove();
 
 
 }
@@ -372,83 +602,6 @@ function cargarCiudades() {
 
 }
 
-function cargarDeparamentos() {
-    //var pais = $("#cboPais option:selected").val();
-    $("#cboDepartamento option").remove();
-    $("#cboDepartamento").append('<option value=""></option>');
-
-    $.ajax({
-        url: '@Url.Action("GetDepartamento", "Clientes")',
-        data: {},
-        crossDomain: true,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        success: function (data) {
-
-            jQuery.each(data, function (index, itemData) {
-
-                $("#cboDepartamento").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
-
-            });
-
-            $('#cboDepartamento').combobox({
-                clearIfNoMatch: true
-            });
-
-            /* $('#cboCiudad').combobox({
-                 clearIfNoMatch: true
-             });*/
-
-        },
-
-        error: function (request, message, error) {
-
-            alert(message);
-        }
-    });
-
-
-}
-
-function cargarPaises() {
-
-    $("#cboPais option").remove();
-    $("#cboPais").append('<option value=""></option>');
-
-    $.ajax({
-        url: '@Url.Action("GetPaises", "Home")',
-        data: {},
-        crossDomain: true,
-        type: 'POST',
-        processData: false,
-        contentType: false,
-        success: function (data) {
-
-            jQuery.each(data, function (index, itemData) {
-
-                $("#cboPais").append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
-
-            });
-
-            $('#cboPais').combobox({
-                clearIfNoMatch: true
-            });
-
-            /* $('#cboCiudad').combobox({
-                 clearIfNoMatch: true
-             });*/
-
-        },
-
-        error: function (request, message, error) {
-
-            alert(message);
-        }
-    });
-
-
-}
 
 function LLamarCiudad() {
 
@@ -485,6 +638,41 @@ function LLamarCiudad() {
 
 }
 
+function LLamarCiudadSucursalesClone(dptoSelected, cboCiudadId) {
+
+    //var dpto = $("#cboDptoSucursal option:selected").val();
+    $("#" + cboCiudadId + " option").remove();
+    $("#" + cboCiudadId).append('<option value=""></option>');
+    var dpto = dptoSelected;
+
+    $.ajax({
+        //url: '@Url.Action("GetCiudades", "Clientes")',
+        //data: JSON.stringify({ "departamento": departamento }),
+        //crossDomain: true,
+        //contentType: 'application/json; charset=utf-8',
+        //dataType: 'json',
+        url: '/Clientes/GetCiudades',
+        data: { Dpto: dpto },
+        type: 'POST',
+        success: function (data) {
+            jQuery.each(data, function (index, itemData) {
+
+                $("#" + cboCiudadId).append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+           
+
+        },
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
+
+}
+
+
 function LLamarCiudadSucursales() {
 
     $("#cboCiudadSucursal option").remove();
@@ -520,6 +708,47 @@ function LLamarCiudadSucursales() {
 
 }
 
+function cargarDepartamentos(idCbo) {
+    //var pais = $("#cboPais option:selected").val();
+
+    //if ($("#" + idCbo).has('option').length) {
+    //    // El select no tiene opciones
+    //    console.log(`tiene datos las opciones del combo: ${idCbo}`)
+    //    $("#" + idCbo + " option").remove();
+    //    $("#" + idCbo + " option").append('<option value=""></option>');
+    //} else {
+    //    console.log(`sin datos el combo: ${idCbo}`)
+    //}
+
+    $("#" + idCbo + " option").remove();
+    $("#" + idCbo + " option").append('<option value=""></option>');
+
+
+    $.ajax({
+        url: '/Clientes/GetDepartamento',
+        data: {},
+        type: 'POST',
+        processData: false,
+
+        success: function (data) {
+
+            jQuery.each(data, function (index, itemData) {
+
+                $("#" + idCbo).append('<option value="' + itemData.value + '">' + itemData.descripcion + '</option>');
+
+            });
+
+
+        },
+
+        error: function (request, message, error) {
+
+            alert(message);
+        }
+    });
+
+
+}
 
 //limpiar options select tipoIdentificación
 const limpiarOptions = () => {
@@ -541,6 +770,10 @@ const agregarOptionNew = () => {
     tipo_identificacion.appendChild(option);
 };
 
+
+
+
+
 ////copia representante legal, al campo representate legal de la sección firma.
 //document.getElementById("repLegalName").addEventListener('keyup', autoCompleteNew);
 
@@ -551,5 +784,28 @@ const agregarOptionNew = () => {
 
 //}
 
+
+
+
+
+
+
+
+
+//function addRow(event) {
+//    var rowId = $(event.target).attr("id");
+//    //var $row = $("id", rowId);
+//    var row = document.querySelector("#secc_cantidadesSucursales1");
+//    var $newRow = $(row).clone(true, true);
+
+
+//    var newId = "row_" + Math.random().toString(36).substring(2, 15);
+
+//    $newRow.attr("id", newId);
+//    $newRow.find(".addButton").attr("id", newId);
+//    $newRow.find("input").val("");
+
+//    row.after($newRow);
+//}
 
 

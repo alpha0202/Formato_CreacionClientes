@@ -731,49 +731,45 @@
                         <div class="container-fluid mx-0 px-0">
                             <div class="row" id="secciones_SucursalesDespacho">
                                 <div class="card-body mx-2 px-0">
-                                    <div class="row g-4">
+                                    <div class="row g-4" id="main">
 
-                                        <div class="col-md">
-                                            <div class="form-floating">
-                                                <input asp-for=Cantidad_Sucursal_Despacho type="number" min="0" class="form-control" id="cantidadSucursales" placeholder="" value="">
-                                                <label for="floatingInputGrid"><strong>Cantidad de Sucursales</strong></label>
-                                            </div>
+                                        <div class="col-auto">
+                                            <label class="col-form-label" style="font-size:13px"><strong>Cantidad Sucursales</strong></label>
+                                               @*  <div class="form-floating">
+                                                    <input asp-for=Cantidad_Sucursal_Despacho type="number" min="0" class="form-control" id="cantidadSucursales" placeholder="" value="">
+                                                    <label for="floatingInputGrid"><strong>Cantidad de Sucursales</strong></label>
+                                                </div> *@
                                         </div>
 
+                                        <div class="col-auto">
+                                                <input asp-for="Cantidad_Sucursal_Despacho" type="number" class="form-control" id="cantidadSucursalesID">
+                                        </div>
+
+                                        <div class="col-md-1"></div>
+
+                                        <div class="col-sm-2 ">
+                                            <input type="button" value="Añadir Elemento" class="bt btn btn-outline-primary" id="btAdd" />
+                                        </div>
+                                        <div class="col-sm-2 mx-0 px-0">
+                                            <input type="button" value="Eliminar Elemento" class="bt btn btn-outline-warning" id="btRemove" />
+
+                                        </div>
+                                        <div class="col-sm-2 mx-0 px-0">
+                                            <input type="button" value="Eliminar Todo" class="bt btn btn-outline-danger" id="btRemoveAll" />
+
+                                        </div>
                                        
 
-
-                                       @* <div class="col-md d-none" id="seccionCambioDir">
-                                            <div class="form-floating">
-                                                <select class="form-select" id="cambioDireccion" aria-label="Floating label select example">
-                                                    <option selected></option>
-                                                    <option value="si">Si</option>
-                                                    <option value="no">No</option>
-                                                </select>
-                                                <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
-                                            </div>
-
-                                        </div>*@
-
-
-                                        @*<div class="col-md d-none" id="seccionDirAnterior">
-                                            <div class="form-floating">
-                                                <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control" id="floatingInputGrid" placeholder="" value="">
-                                                <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
-                                            </div>
-                                        </div>*@
-
                                     </div>
-
+                                 
                                 </div>
                             </div>
                             
                             @*secciones que deben repetirse segun el número de sucursales*@
-                            <div class="" id="secc_cantidadesSucursales">
+                            <div class="d-none" id="secc_cantidadesSucursales">
 
                                 <div class="card-body mx-2 px-0">
                                     <div class="row bg-light">
-                                       
 
                                         <div class="col-sm-6 d-none bg-light" id="seccionCambioDir">
                                             <div class="form-floating">
@@ -788,9 +784,9 @@
                                         </div>
 
 
-                                        <div class="col-sm-6 d-none bg-light" id="seccionDirAnterior">
+                                        <div class="col-sm-6  bg-light direccionAnterior" id="seccionDirAnterior">
                                             <div class="form-floating">
-                                                <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal">
+                                                <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal" disabled>
                                                 <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
                                             </div>
                                         </div>
@@ -812,6 +808,7 @@
                                     </div>
 
                                 </div>
+
                                 <div class="row bg-light">
                                     <div class="card-body mx-2 px-0">
                                         <div class="input-group mb-2">
@@ -824,7 +821,6 @@
                                             </select>
 
 
-
                                             <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
 
                                             <select asp-for=Ciudad_Despacho type="" class="form-select comboCiudadSucursales" id="cboCiudadSucursal">
@@ -835,6 +831,8 @@
                                     </div>
 
                                 </div>
+
+
                                 <div class="row bg-light border-bottom">
                                     <div class="card-body mx-2 px-0">
                                         <div class="input-group mb-2">
@@ -855,7 +853,31 @@
 
                             </div>
 
+
+                            @* ///lugar de pruebas *@
+                            @* <div class="card-body mx-2 px-0"> *@
+                            @*     <div id="main"> *@
+                            @*         <div class="row"> *@
+                            @*             <div class="col-sm-2 mx-0 px-0"> *@
+                            @*                 <input type="button" id="btAdd" value="Añadir Elemento" class="bt btn btn-outline-primary " /> *@
+                            @*             </div> *@
+                            @*             <div class="col-sm-2 mx-0 px-0"> *@
+                            @*                 <input type="button" id="btRemove" value="Eliminar Elemento" class="bt btn btn-outline-warning" /> *@
+
+                            @*             </div> *@
+                            @*             <div class="col-sm-2 px-0"> *@
+                            @*                 <input type="button" id="btRemoveAll" value="Eliminar Todo" class="bt btn btn-outline-danger" /> *@
+
+                            @*             </div> *@
+
+
+                            @*         </div> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+
                             <div class="" id="destinoClone"></div>
+                            @* //// *@
                         </div>
 
                     </div>

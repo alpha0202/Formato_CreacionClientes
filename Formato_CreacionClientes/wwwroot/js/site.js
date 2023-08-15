@@ -201,12 +201,12 @@ $(document).ready(function () {
    
 
     //verificar los input de secciones clonadas
-    $('#secc_cantidadesSucursales input').on('change',function () {
-        var selectedInputId = $(this).attr('id');
-        var valorInput = $('#'+selectedInputId).val();
-        console.log('Selected ID:',selectedInputId);
-        console.log(valorInput);
-    })
+    //$('#secc_cantidadesSucursales input').on('change',function () {
+    //    var selectedInputId = $(this).attr('id');
+    //    var valorInput = $('#'+selectedInputId).val();
+    //    console.log('Selected ID:',selectedInputId);
+    //    console.log(valorInput);
+    //})
 
 
   
@@ -220,15 +220,15 @@ $(document).ready(function () {
     //});
 
     //detectar combo seleccionado sección clonados
-    $(".comboCiudadSucursales").click( function () {
-        selected_CboCiudad_Id = $(this).attr('id');
-        selectedCiudad = $("#" + selected_CboCiudad_Id).val();
-        console.log('Selected ID:', selected_CboCiudad_Id);
-        console.log(selectedCiudad);
-        //$(selected_CboCiudad_Id).val('');
-        LLamarCiudadSucursalesClone(selectedDpto,selected_CboCiudad_Id);
+    //$(".comboCiudadSucursales").click( function () {
+    //    selected_CboCiudad_Id = $(this).attr('id');
+    //    selectedCiudad = $("#" + selected_CboCiudad_Id).val();
+    //    console.log('Selected ID:', selected_CboCiudad_Id);
+    //    console.log(selectedCiudad);
+    //    //$(selected_CboCiudad_Id).val('');
+    //    LLamarCiudadSucursalesClone(selectedDpto,selected_CboCiudad_Id);
 
-    });
+    //});
 
 
    
@@ -254,10 +254,10 @@ $(document).ready(function () {
 
             const filaUno = `<div class="tb${iCnt}" id="tb${iCnt}">
                              <div class="card-body mx-2 px-0">
-                              <div class="row bg-light">
-                                <div class="col-sm-6 bg-light" id="seccionCambioDir${iCnt}">
-                                  <div class="form-floating">
-                                    <select class="form-select cambioDirSucursal" id="cambioDireccion${iCnt}">
+                              <div class="row bg-light cambioDirSucursal">
+                                <div class="col-sm-6 bg-light " id="seccionCambioDir${iCnt}">
+                                  <div class="form-floating ">
+                                    <select class="form-select cambioDirSucursalCbo" id="cambioDireccion${iCnt}">
                                       <option selected></option>
                                       <option value="si">Si</option>
                                       <option value="no">No</>
@@ -325,7 +325,7 @@ $(document).ready(function () {
                                </div>`
 
 
-
+            
 
 
             // Añadir caja de texto.
@@ -335,11 +335,12 @@ $(document).ready(function () {
             if (iCnt == 1) {
                 var divSubmit = $(document.createElement("div"));
                 $(divSubmit).append(
-                    '<input type=button class="bt" onclick="GetTextValue()"' + "id=btSubmit value=Enviar />"
+                    '<input type=button class="bt btn btn-outline-success" onclick="GetTextValue()"' + "id=btSubmit value=Enviar />"
                 );
             }
 
             $("#main").after(container, divSubmit);
+            $("#cantidadSucursalesID").val(iCnt);
         } else {
             //se establece un limite para añadir elementos, 20 es el limite
 
@@ -354,6 +355,7 @@ $(document).ready(function () {
         if (iCnt != 0) {
             $(".tb" + iCnt).remove();
             iCnt = iCnt - 1;
+            $("#cantidadSucursalesID").val(iCnt);
 
         }
 
@@ -364,6 +366,7 @@ $(document).ready(function () {
             $("#btSubmit").remove();
             $("#btAdd").removeAttr("disabled");
             $("#btAdd").attr("class", "enabled");
+            $("#btAdd").attr("class", "btn btn-outline-primary");
         }
     });
 
@@ -378,33 +381,35 @@ $(document).ready(function () {
         $("#btAdd").removeAttr("disabled");
         $("#btAdd").attr("class", "bt");
         $("#btAdd").attr("class", "btn");
-        $("#btAdd").attr("class", "btn-outline-primary");
+        $("#btAdd").attr("class", "btn btn-outline-primary");
+        $("#cantidadSucursalesID").val("");
        
        
     });
 
     BuscarInputs();
 
-    //detectar cambio dirección sucursal-sección clonada
-    $(".cambioDirSucursal").click(function () {
-        var selected_CboId = $(this).attr('id');
-        var valCboCambio = $("#" + selected_CboId).val();
-        const seccionDireAnterior = $('div.direccionAnterior').attr('id');
-        console.log('Selected ID:', selected_CboId);
-        console.log(valCboCambio);
-
-        if (valCboCambio.value === "si") {
-            $("#" + seccionDireAnterior).removeClass("d-none");
-        }
-        else {
-            $("#" + seccionDireAnterior).addClass("d-none");
-        }
-
-    });
-
 
    
   
+});
+
+
+//detectar cambio dirección sucursal-sección clonada
+$('.cambioDirSucursalCbo').on('change',function () {
+    var selected_CboId = $(this).attr('id');
+    var valCboCambio = $("#" + selected_CboId).val();
+    const seccionDireAnterior = $('div.direccionAnterior').attr('id');
+    console.log('Selected ID:', selected_CboId);
+    console.log(valCboCambio);
+
+    if (valCboCambio.value === "si") {
+        $("#" + seccionDireAnterior).removeClass("d-none");
+    }
+    else {
+        $("#" + seccionDireAnterior).addClass("d-none");
+    }
+
 });
 
 

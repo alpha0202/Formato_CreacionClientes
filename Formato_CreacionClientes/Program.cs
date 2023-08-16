@@ -1,6 +1,7 @@
 using System.Data.SqlClient;
 using System.Data;
 using Formato_CreacionClientes.Data;
+using Formulario_SuministroCredito.Service;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +26,11 @@ builder.Services.AddTransient<IDbConnection>((sp) => new MySqlConnector.MySqlCon
 
 //inyectar data creacion clientes
 builder.Services.AddScoped<ICreacionClientesRepository, CreacionClientesRepository>();
+
+//inyección servicio de carga archivos al drive
+builder.Services.AddScoped<IServiceFileUpload, ServiceFileUpload>();
+
+
 
 
 var app = builder.Build();

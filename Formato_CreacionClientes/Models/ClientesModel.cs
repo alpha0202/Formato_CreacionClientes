@@ -7,18 +7,20 @@ namespace Formato_CreacionClientes.Models
     {
         public int Id_Cliente { get; set; }
         public DateTime Fecha_Diligenciamiento { get; set; }
+        [Required(ErrorMessage = "Ingrese el dato requerido.")]
         public string Tipo_Operacion { get; set; }
+        [Required(ErrorMessage = "Ingrese el dato requerido.")]
         public string Tipo_Solicitud { get; set; }
 
         [Required(ErrorMessage = "Ingrese el dato requerido.")]
         [DataType(DataType.Text)]
         [RegularExpression(@"^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$", ErrorMessage = "Utilice solo letras")]
         public string Nombre_Persona_Contacto_Compannia { get; set; }
-
+        [Required(ErrorMessage = "Seleccione el dato requerido.")]
         public string Tipo_Actualizacion { get; set; }
-
+        [Required(ErrorMessage = "Seleccione el dato requerido.")]
         public string Tipo_Persona { get; set; }
-
+        [Required(ErrorMessage = "Seleccione el dato requerido.")]
         public string Tipo_Identificacion { get; set; }
 
         [Required(ErrorMessage ="Ingrese el número de identificación")]
@@ -79,7 +81,10 @@ namespace Formato_CreacionClientes.Models
         [EmailAddress(ErrorMessage = "Email incorrecta")]
         [RegularExpression(@"^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$", ErrorMessage = "Formato incorrecto.")]
         public string Email_Contacto { get; set; }
+
+        [Required(ErrorMessage = "Ingrese el celular")]
         public string Celular_Contacto { get; set; }
+
 
         [Required(ErrorMessage = "Ingrese el dato requerido.")]
         [DataType(DataType.Text)]

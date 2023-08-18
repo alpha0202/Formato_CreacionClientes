@@ -9,7 +9,7 @@
 <div class="container">
     <div class="row">
         <div class="container mx-auto">
-            <form method="post" asp-controller="Clientes" class="validarForm" id="formCreacionClientes" enctype="multipart/form-data" novalidate>
+            <form method="post" name="creacionClientes" asp-controller="Clientes" class="validarForm" id="formCreacionClientes" enctype="multipart/form-data" novalidate>
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="row">
                     <nav class="card  mb-4">
@@ -120,19 +120,20 @@
 
                                         <div class="col-md">
                                             <div class="form-floating">
-                                                <select asp-for="Tipo_Operacion" class="form-select" id="tipoOperacion" >
+                                                <select asp-for="Tipo_Operacion" class="form-select" id="tipoOperacion"  required>
                                                     <option selected></option>
                                                     <option value="vinculacion">Vinculación Inicial</option>
                                                     <option value="actualizacion">Actualización</option>
                                                 </select>
                                                 <label for="floatingSelect"><strong>Tipo Operación</strong></label>
+                                                <span asp-validation-for="Tipo_Operacion" class="text-danger spanValidated"></span>
                                             </div>
 
                                         </div>
 
                                         <div class="col-md  d-none" id="seccionTipoActualizacion">
                                             <div class="form-floating">
-                                                <select asp-for="Tipo_Actualizacion" class="form-select" id="TipoActualizacion" aria-label="Floating label select example">
+                                                <select asp-for="Tipo_Actualizacion" class="form-select" id="TipoActualizacion" aria-label="Floating label select example" required>
                                                     <option selected></option>
                                                     <option value="cambioRS">Cambio Razón Social</option>
                                                     <option value="cambioDdesp">Cambio dirección de despacho</option>
@@ -140,17 +141,13 @@
                                                     <option value="ActualizacionGral">Actualización general</option>
                                                 </select>
                                                 <label for="floatingSelect"><strong>Tipo Actualización</strong></label>
+                                                <span asp-validation-for="Tipo_Actualizacion" class="text-danger spanValidated"></span>
                                             </div>
 
 
                                         </div>
-
-                                      
-
+                                    
                                     </div>
-
-
-
 
                                 </div>
                             </div>
@@ -160,8 +157,9 @@
                                 <div class="card-body mx-2 px-0">
                                     <div class="col-md">
                                         <div class="form-floating">
-                                            <input asp-for="Nombre_Persona_Contacto_Compannia" type="text" class="form-control uppercase" id="floatingInputGrid" placeholder=""  value="">
+                                            <input asp-for="Nombre_Persona_Contacto_Compannia" type="text" class="form-control uppercase" id="floatingInputGrid" placeholder=""  value="" required>
                                             <label for="floatingInputGrid" ><strong>Persona de contacto de la compañia</strong></label>
+                                            <span asp-validation-for="Nombre_Persona_Contacto_Compannia" class="text-danger spanValidated"></span>
                                         </div>
                                     </div>
 
@@ -196,7 +194,7 @@
                                         <div class="row g-4">
                                             <div class="col-md">
                                                 <div class="form-floating">
-                                                    <select asp-for="Tipo_Persona" class="form-select" id="tipoPersona" aria-label="Floating label select example">
+                                                    <select asp-for="Tipo_Persona" class="form-select" id="tipoPersona" aria-label="Floating label select example" required>
                                                         <option selected></option>
                                                         <option value="Natural">Persona Natural</option>
                                                         <option value="Juridica">Persona Jurídica</option>
@@ -209,7 +207,7 @@
 
                                             <div class="col-md">
                                                 <div class="form-floating">
-                                                    <select asp-for="Tipo_Identificacion" class="form-select" id="tipoIdentificacion" aria-label="Floating label select example">
+                                                    <select asp-for="Tipo_Identificacion" class="form-select" id="tipoIdentificacion" aria-label="Floating label select example" required>
                                                         <option selected></option>
                                                         <option value="Nit">Nit</option>
                                                         <option value="C.C">Cédula Ciudadanía</option>
@@ -226,7 +224,7 @@
 
                                             <div class="col-md">
                                                 <div class="form-floating">
-                                                    <input asp-for="Numero_Identificacion" type="number" min="0" class="form-control" id="floatingInputGrid" placeholder="" value="">
+                                                    <input asp-for="Numero_Identificacion" type="number" min="0" class="form-control" id="floatingInputGrid" placeholder="" value="" required>
                                                     <label for="floatingInputGrid"><strong>Número Identificación</strong></label>
                                                 <span asp-validation-for="Numero_Identificacion" class="text-danger spanValidated"></span>
                                                 </div>
@@ -244,7 +242,7 @@
                                  
                                     <div class="input-group mb-2">
                                         <span class="input-group-text" id="nomCompleto_RazonSocial" style="font-size:13px"><strong>Nombre Completo o Razón Social</strong></span>
-                                        <input asp-for="Nombre_Completo_RazonSocial" type="text" class="form-control uppercase" >
+                                        <input asp-for="Nombre_Completo_RazonSocial" type="text" class="form-control uppercase" required>
                                         <span asp-validation-for="Nombre_Completo_RazonSocial" class="text-danger spanValidated"></span>
                                     </div>
 
@@ -261,7 +259,7 @@
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text" id="inputGroup-sizing-default" style="font-size:13px"><strong>Representante Legal</strong></span>
-                                        <input asp-for="Representante_Legal" type="text" class="form-control uppercase" >
+                                        <input asp-for="Representante_Legal" type="text" class="form-control uppercase" required>
                                         <span asp-validation-for="Representante_Legal" class="text-danger spanValidated"></span>
                                     </div>
 
@@ -271,13 +269,14 @@
 
                             <div class="row d-none" id="seccionPerNatural">
                                 <div class="card-body mx-2 px-0">
-                                                                     
+
                                     <div class="input-group">
                                         <span class="input-group-text" style="font-size:13px"><strong>Nombre(s) y Apellido(s)</strong></span>
-                                        <input asp-for=Nombres_Persona_Natural type="text" aria-label="First name" class="form-control uppercase">
-                                        <span asp-validation-for="Nombres_Persona_Natural" class="text-danger spanValidated"></span>
-                                        <input asp-for=Apellidos_Persona_Natural type="text" aria-label="Last name" class="form-control uppercase">
-                                        <span asp-validation-for="Apellidos_Persona_Natural" class="text-danger spanValidated"></span>
+                                        <input asp-for=Nombres_Persona_Natural type="text" aria-label="First name" class="form-control uppercase" required>
+                                        @* <span asp-validation-for="Nombres_Persona_Natural" class="text-danger spanValidated"></span> *@
+
+                                        <input asp-for=Apellidos_Persona_Natural type="text" aria-label="Last name" class="form-control uppercase" required>
+                                        @* <span asp-validation-for="Apellidos_Persona_Natural" class="text-danger spanValidated"></span> *@
                                     </div>
 
                                 </div>
@@ -291,31 +290,27 @@
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text" style="font-size:13px"><strong>Dirección</strong></span>
-                                        <input asp-for=Direccion_Tercero type="text" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Direccion_Tercero type="text" class="form-control" placeholder="" aria-label="" required>
+                                        @* <span asp-validation-for="Direccion_Tercero" class="text-danger spanValidated"></span> *@
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
-                                        <input asp-for=Barrio_Tercero type="text" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Barrio_Tercero type="text" class="form-control" placeholder="" aria-label="" required>
+                                        @* <span asp-validation-for="Barrio_Tercero" class="text-danger spanValidated"></span> *@
 
                                         <label  class="input-group-text" for="" style="font-size:13px"><strong>Departamento</strong></label>
-                                        @*<span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>*@
-                                        <select asp-for="Departamento_Tercero" class="form-select"  asp-items="@ViewData["combo"] as SelectList" id="cboDepartamento">
+                                        <select asp-for="Departamento_Tercero" class="form-select"  asp-items="@ViewData["combo"] as SelectList" id="cboDepartamento" required>
                                             <option value=""></option>
                                         </select>
-                                      
-                                        @*<span class="input-group-text" style="font-size:13px"><strong>Ciudad</strong></span>*@
-                                        @*<input asp-for=Ciudad_Tercero type="text" class="form-control" placeholder="" aria-label="">*@
-
+                                        @* <span asp-validation-for="Departamento_Tercero" class="text-danger spanValidated"></span> *@
+                              
+                                     
                                         <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
-                                        @*<span class="input-group-text" style="font-size:13px"><strong>Departamento</strong></span>*@
-                                        <select asp-for=Ciudad_Tercero type="" class="form-select"  id="cboCiudad">
+                                        <select asp-for=Ciudad_Tercero type="" class="form-select"  id="cboCiudad" required>
                                             <option value=""></option>
                                         </select>
-
+                                        @* <span asp-validation-for="Ciudad_Tercero" class="text-danger spanValidated"></span> *@
 
                                     </div>
-
-
-
 
                                 </div>
 
@@ -326,13 +321,13 @@
                                   
                                     <div class="input-group mb-2">
                                         <span class="input-group-text" style="font-size:13px"><strong>Número Celular</strong></span>
-                                        <input asp-for=Numero_Celular_Tercero type="tel" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Numero_Celular_Tercero type="tel" class="form-control" placeholder="" aria-label="" required>
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
-                                        <input asp-for=Telefono_Fijo_Tercero type="tel" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Telefono_Fijo_Tercero type="tel" class="form-control" placeholder="" aria-label="" required>
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Email</strong></span>
-                                        <input asp-for=Email_Tercero type="email" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Email_Tercero type="email" class="form-control" placeholder="" aria-label="" required>
                                         
                                     </div>
 
@@ -360,13 +355,13 @@
                                                 <tr>
                                                     <th style="text-align:center" scope="col">
                                                         <div class="form-check form-check-inline">
-                                                            <input asp-for=Desempenna_Funciones_Publicas class="form-check-input" type="radio" name="inlineRadioOptions" id="desempeñaSi" value="si">
+                                                            <input asp-for=Desempenna_Funciones_Publicas class="form-check-input" type="radio" name="inlineRadioOptions" id="desempeñaSi" value="si" required>
                                                             <label class="form-check-label" for=""></label>
                                                         </div>
                                                     </th>
                                                     <th style="text-align:center" scope="col">
                                                         <div class="form-check form-check-inline">
-                                                            <input asp-for=Desempenna_Funciones_Publicas class="form-check-input" type="radio" name="inlineRadioOptions" id="desempeñaNo" value="no">
+                                                            <input asp-for=Desempenna_Funciones_Publicas class="form-check-input" type="radio" name="inlineRadioOptions" id="desempeñaNo" value="no" required> 
                                                             <label class="form-check-label" for=""></label>
                                                         </div>
                                                     </th>
@@ -381,13 +376,13 @@
                                                 <tr>
                                                     <th style="text-align:center" scope="col">
                                                         <div class="form-check form-check-inline">
-                                                            <input asp-for=Administra_Recursos_Publicos class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="si">
+                                                            <input asp-for=Administra_Recursos_Publicos class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="si" required>
                                                             <label class="form-check-label" for=""></label>
                                                         </div>
                                                     </th>
                                                     <th style="text-align:center" scope="col">
                                                         <div class="form-check form-check-inline" style="text-align:center">
-                                                            <input asp-for=Administra_Recursos_Publicos class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="no">
+                                                            <input asp-for=Administra_Recursos_Publicos class="form-check-input" type="radio" name="inlineRadioOptions2" id="" value="no" required>
                                                             <label class="form-check-label" for=""></label>
                                                         </div>
                                                     </th>
@@ -414,28 +409,16 @@
                                             <thead>
                                                 <tr style="text-align:center">
                                                     <th class="titulo_tabla" scope="col" colspan="2" style="font-size:13px">Cargo público que desempeña</th>
-                                                    <td colspan="2"><input asp-for=Cargo_Publico class="form-control uppercase" type="text" /> </td>
+                                                    <td colspan="2"><input asp-for=Cargo_Publico class="form-control uppercase" type="text" required/> </td>
                                                 </tr>
 
                                             </thead>
                                             <tbody>
                                                 <tr>
                                                     <th class="titulo_tabla" scope="row" rowspan="2" style="font-size:13px">Año de vinculación</th>
-
-                                                    <td>
-                                                        <input asp-for=Anno_Vinculacion class="form-control" type="number" min="1900" max="2099" step="1" placeholder="2023" value="">
-
-                                                    </td>
+                                                        <td><input asp-for=Anno_Vinculacion class="form-control" type="number" min="1900" max="2099" step="1" placeholder="2023" value="" required> </td>
                                                     <th class="titulo_tabla" scope="row" rowspan="2" style="font-size:13px">Año de desvinculación</th>
-                                                    <td>
-
-                                                        <input asp-for=Anno_Desvinculacion class="form-control" type="number" min="1900" max="2099" step="1" placeholder="2023" value="">    @*@DateTime.Now.Year*@
-
-
-
-                                                    </td>
-
-
+                                                        <td><input asp-for=Anno_Desvinculacion class="form-control" type="number" min="1900" max="2099" step="1" placeholder="2023" value="" required>@*@DateTime.Now.Year*@</td>
                                                 </tr>
 
                                             </tbody>
@@ -477,19 +460,44 @@
 
                                     <div class="input-group mb-2">
                                         <span class="input-group-text" style="font-size:13px"><strong>Persona contacto</strong></span>
-                                        <input asp-for=Persona_Contacto type="text" class="form-control uppercase" placeholder="" aria-label="">
+                                        <input asp-for=Persona_Contacto type="text" class="form-control uppercase" placeholder="" aria-label="" required>
+                                        @* <span class="spanValidated" asp-validation-for="Persona_Contacto"></span> *@
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Cargo</strong></span>
-                                        <input asp-for=Cargo_Contacto type="text" class="form-control uppercase" placeholder="" aria-label="">
+                                        <input asp-for=Cargo_Contacto type="text" class="form-control uppercase" placeholder="" aria-label="" required>
+                                        @* <span class="spanValidated" asp-validation-for="Cargo_Contacto"></span> *@
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Email</strong></span>
-                                        <input asp-for=Email_Contacto type="email" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Email_Contacto type="email" class="form-control" placeholder="" aria-label="" required>
+                                        @* <span class="spanValidated" asp-validation-for="Email_Contacto"></span> *@
 
                                         <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
-                                        <input asp-for=Celular_Contacto type="tel" class="form-control" placeholder="" aria-label="">
+                                        <input asp-for=Celular_Contacto type="tel" class="form-control" placeholder="" aria-label="" required>
+                                        @* <span class="spanValidated" asp-validation-for="Celular_Contacto"></span> *@
                                     </div>
 
+                                </div>
+                                <div class="row gx-6">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-2">
 
+                                        <span class="spanValidated p-3" asp-validation-for="Persona_Contacto"></span>
+                                    </div>
+
+                                    <div class="col">
+                                        <span class="spanValidated p-3" asp-validation-for="Cargo_Contacto"></span>
+
+                                    </div>
+
+                                    <div class="col">
+                                        <span class="spanValidated p-3" asp-validation-for="Email_Contacto"></span>
+
+                                    </div>
+
+                                    <div class="col">
+                                        <span class="spanValidated p-3" asp-validation-for="Celular_Contacto"></span>
+
+                                    </div>
                                 </div>
 
                             </div>
@@ -1100,10 +1108,10 @@
                                 </div>
 
                             </div>
-                            <div class="row d-none" id="filaGuarda_Solicitud">
+                            <div class="row" id="filaGuarda_Solicitud">
                                 <div class="col-sm-4">
                                     <div class="card-body">
-                                        <input id="guardaCreacion" type="submit" value="Enviar Solicitud" asp-action="" asp-controller="Clientes" class="btn btn-outline-success" disabled />
+                                        <input id="guardaCreacionCliente" type="submit" value="Enviar Solicitud" asp-action="Index" asp-controller="Clientes" class="btn btn-outline-success" />
 
                                     </div>
 

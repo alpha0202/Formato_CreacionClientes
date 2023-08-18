@@ -257,7 +257,7 @@ $(document).ready(function () {
                               <div class="row bg-light cambioDirSucursal">
                                 <div class="col-sm-6 bg-light " id="seccionCambioDir${iCnt}">
                                   <div class="form-floating ">
-                                    <select class="form-select cambioDirSucursalCbo" id="cambioDireccion${iCnt}">
+                                    <select class="form-select cambioDirSucursalCbo" id="cambioDireccion${iCnt}" required>
                                       <option selected></option>
                                       <option value="si">Si</option>
                                       <option value="no">No</>
@@ -280,10 +280,10 @@ $(document).ready(function () {
                                <div class="card-body mx-2 px-0">
                                 <div class="input-group mb-2 datosSucursales">                          
                                  <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
-                                 <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal${iCnt}">
+                                 <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal${iCnt}" required>
                                 
                                  <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
-                                 <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal${iCnt}">
+                                 <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal${iCnt}" required>
                                 </div>
                              </div>
                             </div>`
@@ -294,11 +294,11 @@ $(document).ready(function () {
                             <div class="card-body mx-2 px-0">
                              <div class="input-group mb-2 datosSucursales">
                                 <label class="input-group-text" for="" style="font-size:13px"><strong>Departamento</strong></label>
-                                <input asp-for=Departamento_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboDptoSucursal${iCnt}">
+                                <input asp-for=Departamento_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboDptoSucursal${iCnt}" required>
 
                              
                              <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
-                             <input asp-for=Ciudad_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboCiudadSucursal${iCnt}">
+                             <input asp-for=Ciudad_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboCiudadSucursal${iCnt}" required>
                                
                             </div>
                      </div>
@@ -311,13 +311,13 @@ $(document).ready(function () {
                                     <div class="input-group mb-2 datosSucursales">
                                         
                                         <span class="input-group-text" style="font-size:13px"><strong>Celular</strong></span>
-                                        <input asp-for=Celular_Despacho type="number" min="0" maxlength="10" class="form-control celSucursal" id="celularSucursal${iCnt}">
+                                        <input asp-for=Celular_Despacho type="number" min="0" maxlength="10" class="form-control celSucursal" id="celularSucursal${iCnt}" required>
                                         
                                         <span class="input-group-text" style="font-size:13px"><strong>Teléfono</strong></span>
-                                        <input asp-for="Telefono_Despacho" type="number" min="0" maxlength="12" class="form-control telSucursal" id="telefonoSucursal${iCnt}">
+                                        <input asp-for="Telefono_Despacho" type="number" min="0" maxlength="12" class="form-control telSucursal" id="telefonoSucursal${iCnt}" required>
                                        
                                         <span class="input-group-text" style="font-size:13px"><strong>Email factura electrónica</strong></span>
-                                        <input asp-for=Email_FactElectronica_Despacho type="email" class="form-control emailSucursal" id="emailFactSucursal${iCnt}">
+                                        <input asp-for=Email_FactElectronica_Despacho type="email" class="form-control emailSucursal" id="emailFactSucursal${iCnt}" required>
                                       </div>
                                      </div>
                                     </div>
@@ -776,6 +776,81 @@ const agregarOptionNew = () => {
 };
 
 
+
+
+
+// Example starter JavaScript for disabling form submissions if there are invalid fields
+(() => {
+    'use strict'
+
+    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+    const forms = document.querySelectorAll('.validarForm')
+    const rowGuardar_solicitud = document.querySelector("#filaGuarda_Solicitud");
+    const btnGuardaSolicitud = document.querySelector("#guardaSolicitud");
+
+
+    // Loop over them and prevent submission
+    Array.from(forms).forEach(form => {
+        form.addEventListener('submit', event => {
+            if (!form.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
+                //botonGenerar.classList.remove("disabled")
+                //appendAlert('Formulario Incompleto.', 'warning')
+                CerrandoAlerta('Formulario Incompleto.', '1')
+
+
+            }
+            else {
+                //botonGenerar.classList.add("disabled")
+                //botonGenerar.classList.add("invisible")
+                //rowGuardar_solicitud.classList.remove("invisible")
+                //appendAlert('Registro de solicitud exitoso!', 'success')
+                CerrandoAlerta('Registro de solicitud exitoso!', '2')
+                btnGuardaSolicitud.classList.add("disabled")
+            }
+            form.classList.add('was-validated')
+        }, false)
+    })
+})()
+
+
+
+
+//alertas
+
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const appendAlert = (message, type) => {
+
+    const wrapper = document.createElement('div')
+
+    wrapper.innerHTML = [
+        `<div class="alert alert-${type}  alert-dismissible" role="alert">`,
+        `   <div><strong>${message}</strong></div>`,
+        '</div>'
+    ].join('')
+    alertPlaceholder.appendChild(wrapper)
+}
+
+function CerrandoAlerta(message, tipoAlert) {
+
+    let alerta = "";
+    if (tipoAlert == '1')
+        alerta = "alert-warning"
+    else
+        alerta = "alert-success"
+
+    const mensaje = message;
+    const x = document.getElementById("ok");
+    x.style.display = "block";
+    x.innerHTML = mensaje;
+    x.classList.add(alerta);
+    x.classList.add("show");
+
+    setTimeout(function () {
+        $("#ok").fadeOut(2000);
+    }, 2000);
+}
 
 
 

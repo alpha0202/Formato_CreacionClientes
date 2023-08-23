@@ -151,6 +151,12 @@ $(document).ready(function () {
     let selectedDpto;
     let selected_CboCiudad_Id;
     let selectedCiudad;
+    let inputsRZTAccionistas = $('table input.razonSocialClass');
+    let radioTipPerTAccionistas = $('table input.tipoPerClass');
+    let selectTipoIdTAccionistas = $('table select.selectTipoId')
+    let inputNumDocTAccionistas = $('table input.numDocClass')
+    let inputPorcTAccionistas = $('table input.porcentaje')
+
 
     $('input[type=radio][name=inlineRadioOptions]').change(function()  {
         if (this.value == "si")
@@ -175,12 +181,31 @@ $(document).ready(function () {
             $("#cargaAccionistas").removeClass("d-none");
         else
             $("#cargaAccionistas").addClass("d-none");
-        if (this.value == "no")
+
+        if (this.value == "no") {
+
             $("#tablaAccionistas").removeClass("d-none");
-        else
+            $(inputsRZTAccionistas).prop("required", true);
+            $(radioTipPerTAccionistas).prop("required", true);
+            $(selectTipoIdTAccionistas).prop("required", true);
+            $(inputNumDocTAccionistas).prop("required", true);
+            $(inputPorcTAccionistas).prop("required", true);
+           
+
+        }
+        else {
+
             $("#tablaAccionistas").addClass("d-none");
+            $(inputsRZTAccionistas).prop("required", false);
+            $(radioTipPerTAccionistas).prop("required", false);
+            $(selectTipoIdTAccionistas).prop("required", false);
+            $(inputNumDocTAccionistas).prop("required", false);
+            $(inputPorcTAccionistas).prop("required", false);
+        }
 
     });
+
+
 
 
     SumarPorcentajes();
@@ -198,7 +223,7 @@ $(document).ready(function () {
         //LLamarCiudadSucursales();
     });
 
-   
+    
 
     //verificar los input de secciones clonadas
     //$('#secc_cantidadesSucursales input').on('change',function () {
@@ -558,6 +583,28 @@ function SumarPorcentajes() {
         }
     });
 }
+
+function sumar(valor) {
+    var total = 0;
+    valor = parseInt(valor); // Convertir el valor a un entero (número).
+
+    total = document.getElementById('spTotal').innerHTML;
+
+    // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
+    total = (total == null || total == undefined || total == "") ? 0 : total;
+
+    /* Esta es la suma. */
+    total = (parseInt(total) + parseInt(valor));
+
+    // Colocar el resultado de la suma en el control "span".
+    document.getElementById('spTotal').innerHTML = total;
+
+    if (total > 96) {
+        console.log(total);
+    }
+}
+
+
 
 function cargarCiudades() {
 

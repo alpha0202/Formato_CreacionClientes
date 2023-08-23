@@ -562,7 +562,7 @@
                                                 <tr>
                                                     <th scope="col" class="titulo_tabla" rowspan="2">Razón social / Nombre completo de socio o accionista</th>
                                                     <th scope="col" class="titulo_tabla" rowspan="1" colspan="2">Persona Natural(PN)<br />Persona Jurídica(PJ)</th>
-                                                    <th scope="col" class="titulo_tabla" rowspan="2">Tipo ID</th>
+                                                    <th scope="col" class="titulo_tabla" rowspan="2" style="align-content:center">Tipo ID</th>
                                                     <th scope="col" class="titulo_tabla" rowspan="2">Número de documento de identificación</th>
                                                     <th scope="col" class="titulo_tabla" rowspan="2">% de Participación</th>
                                                     <th scope="col" class="titulo_tabla" colspan="2">¿Desempeña funciones públicas?</th>
@@ -581,11 +581,11 @@
                                             </thead>
                                             <tbody>
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona1" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona1" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona1" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona1" id="" value="PJ"></td>
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -594,8 +594,8 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0"/></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica1" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica1" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos1" id="" value="si"></td>
@@ -603,12 +603,12 @@
                                                 </tr>
 
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PJ"></td>
                                                     
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -617,20 +617,20 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="no"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PJ"></td>
                                                    
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -639,8 +639,8 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -648,12 +648,12 @@
                                                                                                       
                                                 </tr>
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PJ"></td>
                                                     
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -662,20 +662,20 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="no"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PJ"></td>
                                                     
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -684,20 +684,20 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="no"></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control" type="text" style="font-size:13px" /></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PN"></td>
-                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input" type="radio" name="tipoPersona2" id="" value="PJ"></td>
+                                                    <td><input asp-for=Razon_Social_Nombre_SocioA class="form-control razonSocialClass" type="text" style="font-size:13px" /></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PN"></td>
+                                                    <td style="text-align:center"><input asp-for="Tipo_Persona_SocioA" class="form-check-input tipoPerClass" type="radio" name="tipoPersona2" id="" value="PJ"></td>
                                                     
                                                     <td>
-                                                        <select asp-for=Tipo_Id_SocioA class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                                        <select asp-for=Tipo_Id_SocioA class="form-select selectTipoId" id="floatingSelect" aria-label="Floating label select example">
                                                             <option selected></option>
                                                             <option value="Nit">Nit</option>
                                                             <option value="C.C">Cédula Ciudadanía</option>
@@ -706,8 +706,8 @@
                                                             <option value="Pep">Permiso Especial de Permanencia</option>
                                                         </select>
                                                     </td>
-                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" /></td>
+                                                    <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -723,7 +723,9 @@
                                 </div>
 
                             </div>
-
+                            <div class="row">
+                                <span>El resultado es: </span> <span id="spTotal"></span>
+                            </div>
                         </div>
                     </div>
 
@@ -1032,7 +1034,7 @@
                     </div>
                     
                     @*firmante*@
-                    <div class="card mb-3 mx-0">
+                    <div class="card mb-3 mx-0 d-none">
 
                         <div class="container-fluid mx-0 px-0">
                             <div class="row">

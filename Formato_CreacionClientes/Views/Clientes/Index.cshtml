@@ -539,7 +539,7 @@
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <div class="input-group mb-3">
-                                            <input asp-for=Carga_Accionistas type="file" class="form-control" style="font-size:12px" id="inputCargaAccionistas">
+                                            <input asp-for=Carga_Accionistas type="file" class="form-control cargaFileAccionista" style="font-size:12px" id="inputCargaAccionistas">
                                             <label class="input-group-text" style="font-size:12px" for="inputGroupFile02">Cargar accionistas.</label>
                                         </div>
                                     </div>
@@ -595,7 +595,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica1" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica1" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos1" id="" value="si"></td>
@@ -618,7 +618,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -640,7 +640,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -663,7 +663,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -685,7 +685,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -707,7 +707,7 @@
                                                         </select>
                                                     </td>
                                                     <td><input asp-for="Num_Doc_SocioA" class="form-control numDocClass" type="number" min="0" /></td>
-                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar(this.value);" /></td>
+                                                    <td><input asp-for="Porcentaje_SocioA" class="form-control porcentaje" type="number" min="1" max="100" onchange="sumar();" /></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="si"></td>
                                                     <td style="text-align:center"><input asp-for="Desempenna_Func_Publica_SocioA" class="form-check-input" type="radio" name="funcionPublica2" id="" value="no"></td>
                                                     <td style="text-align:center"><input asp-for="Maneja_Recurso_Publico_SocioA" class="form-check-input" type="radio" name="manejaRecursos2" id="" value="si"></td>
@@ -723,8 +723,14 @@
                                 </div>
 
                             </div>
-                            <div class="row">
-                                <span>El resultado es: </span> <span id="spTotal"></span>
+                            <div class="row d-none" id="filaSumaAccionistas">
+                                <div class="col-md-4">
+                                    <span>Porcentaje Accionistas: </span><span id="spTotal"></span>
+                                </div>
+                                <div class="col-md-4">
+                                    @* <div id="line-container"></div> *@
+                                    <div id="liveAlertPlaceholder" class="alert " style="display:none" role="alert"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -863,26 +869,6 @@
                             </div>
 
 
-                            @* ///lugar de pruebas *@
-                            @* <div class="card-body mx-2 px-0"> *@
-                            @*     <div id="main"> *@
-                            @*         <div class="row"> *@
-                            @*             <div class="col-sm-2 mx-0 px-0"> *@
-                            @*                 <input type="button" id="btAdd" value="Añadir Elemento" class="bt btn btn-outline-primary " /> *@
-                            @*             </div> *@
-                            @*             <div class="col-sm-2 mx-0 px-0"> *@
-                            @*                 <input type="button" id="btRemove" value="Eliminar Elemento" class="bt btn btn-outline-warning" /> *@
-
-                            @*             </div> *@
-                            @*             <div class="col-sm-2 px-0"> *@
-                            @*                 <input type="button" id="btRemoveAll" value="Eliminar Todo" class="bt btn btn-outline-danger" /> *@
-
-                            @*             </div> *@
-
-
-                            @*         </div> *@
-                            @*     </div> *@
-                            @* </div> *@
 
 
                             <div class="" id="destinoClone"></div>
@@ -901,15 +887,17 @@
                         <div class="container-fluid mx-0 px-0">
                             <div class="row">
                                 <div class="col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" id="inputGroupFile02">
-                                        @*<label class="input-group-text" for="inputGroupFile02">Upload</label>*@
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label" style="font-size:13px"><strong>Documento 1</strong></label>
+                                        <input type="file" class="form-control" id="inputGroupFile02" style="font-size:13px">
+                                        
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
-                                    <div class="input-group mb-3">
-                                        <input type="file" class="form-control" id="inputGroupFile02">
-                                        @*<label class="input-group-text" for="inputGroupFile02">Upload</label>*@
+                                    <div class="mb-3">
+                                        <label for="formFile" class="form-label" style="font-size:13px"><strong>Documento 2</strong></label>
+                                        <input type="file" class="form-control" id="inputGroupFile02" style="font-size:13px">
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -934,12 +922,13 @@
                             <div class="row">
                                 <p style="text-align:justify;font-size:13px">
                                     Yo, identificado como aparece al pie de mi firma, actuando en nombre propio y/o en mi condición de representante legal de la sociedad que represento, igualmente aquí relacionada, 
-                                    de manera voluntaria declaro que todo lo aquí consignado es cierto, veraz y confiable, y que los recursos que entregue a Agropecuaria Aliar S.A., son producto de operaciones lícitas 
-                                    del giro ordinario de mis negocios, a la luz de la normatividad legal aplicable; así como todas mis actividades, transacciones y operaciones, resaltando que ninguna de ellas se enmarca 
-                                    dentro de las contempladas en el Código Penal Colombiano como Lavado de Activos y/o Financiación del Terrorismo - LA/FT, ni los fondos que de ellas se derivan se encuentran 
-                                    relacionados con Lavado de Activos y/o Financiación del Terrorismo - LA/FT. Para efectos de comprobación de lo aquí escrito, <strong>autorizo a Agropecuaria Aliar S.A</strong>. a consultar,
-                                    verificar e indagar cualquier lista restrictiva y/o vinculante que exista para tal fin. En virtud de lo anterior la empresa podrá dar por terminada cualquier relación comercial, 
-                                    contractual o de negocios con el suscrito, si así lo considera, teniendo en cuenta el análisis de riesgos y el resultado del proceso de Debida Diligencia en conocimiento de contrapartes.
+                                    de manera voluntaria declaro que todo lo aquí consignado es cierto, veraz y confiable, y que los recursos que entregue a <strong>AGROPECUARIA ALIAR S.A.</strong>, son producto de 
+                                    operaciones lícitas del giro ordinario de mis negocios, a la luz de la normatividad legal aplicable; así como todas mis actividades, transacciones y operaciones, resaltando que 
+                                    ninguna de ellas se enmarca dentro de las contempladas en el Código Penal Colombiano como Lavado de Activos y/o Financiación del Terrorismo - LA/FT, ni los fondos que de ellas se 
+                                    derivan se encuentran relacionados con Lavado de Activos y/o Financiación del Terrorismo - LA/FT. Para efectos de comprobación de lo aquí escrito, 
+                                    <strong>autorizo a AGROPECUARIA ALIAR S.A</strong>. a consultar, verificar e indagar cualquier lista restrictiva y/o vinculante que exista para tal fin. En virtud de lo anterior 
+                                    la empresa podrá dar por terminada cualquier relación comercial, contractual o de negocios con el suscrito, si así lo considera, teniendo en cuenta el análisis de riesgos y el resultado 
+                                    del proceso de Debida Diligencia en conocimiento de contrapartes.
                                 </p>
                             </div>
 
@@ -977,10 +966,10 @@
                                 <p style="text-align:justify;font-size:13px">
                                     <strong>AGROPECUARIA ALIAR S.A</strong>, identificada con nit 890.207.037-1, será el Responsable del tratamiento y, en tal virtud, podrá recolectar, almacenar, usar, suprimir, transferir, transmitir, actualizar y procesar para
                                     las siguientes finalidades: 
-                                    <strong>1.</strong> Realizar creación en las bases de datos de la compañía, actualizar sus datos cuando la compañía lo considere necesario o cuando el cliente lo requiera, inactivarlo una vez terminada la relación comercial,
-                                    utilizar la información de contacto para gestionar los temas administrativos de la relación comercial con nuestros clientes, generar facturación electrónica, realizar actividades de fidelización, telemercadeo 
-                                    y/o E-mailing (Correo electrónico), gestionar todo lo referente con servicio al cliente (SAC) para gestionar sus peticiones, quejas, reclamos, sugerencias y felicitaciones (PQRSF), gestión y envío de domicilios, 
-                                    divulgación de campañas publicitarias, información de nuestros productos, información promocional, ofertas, eventos y actividades de mercadeo. 
+                                    <strong>1.</strong> Realizar creación en las bases de datos de la compañía, actualizar sus datos cuando la compañía lo considere necesario o cuando el cliente lo requiera, inactivarlo una vez terminada 
+                                    la relación comercial, utilizar la información de contacto para gestionar los temas administrativos de la relación comercial con nuestros clientes, generar facturación electrónica, realizar actividades de 
+                                    fidelización, telemercadeo y/o E-mailing (Correo electrónico), gestionar todo lo referente con servicio al cliente (SAC) para gestionar sus peticiones, quejas, reclamos, sugerencias y felicitaciones (PQRSF), gestión y 
+                                    envío de domicilios, divulgación de campañas publicitarias, información de nuestros productos, información promocional, ofertas, eventos y actividades de mercadeo. 
                                     <strong>2.</strong> Realizar verificaciones en listas inhibitorias de Lavado de activos, financiación del terrorismo, financiamiento de la proliferación de armas de destrucción masiva, corrupción y soborno transnacional y/o cualquier
                                     otra verificación que defina la compañía para la vinculación de clientes. 
                                     <strong>3.</strong> Realizar grabaciones de voz en los diferentes procesos comerciales tales como:
@@ -989,7 +978,8 @@
                                     actividades de investigación de mercados y demás que sean organizadas y/o patrocinadas por la compañía, de manera directa o a través de la transmisión de sus datos a las agencias de mercadeo y publicidad que 
                                     determine la compañía. 
                                     <strong>5.</strong> Usar y publicar todo el material biométrico derivado de las actividades de mercadeo y publicidad que puede incluir imágenes, videos, testimonios, entrevistas, eventos masivos y contenido
-                                    editorial para ser incluidos en medios digitales, masivos, de comunicación corporativa, redes sociales, página web o cualquiera que determine la compañía. 6. Transmitir la información a la empresa encargada 
+                                    editorial para ser incluidos en medios digitales, masivos, de comunicación corporativa, redes sociales, página web o cualquiera que determine la compañía. 
+                                    <strong>6.</strong> Transmitir la información a la empresa encargada
                                     del almacenamiento, gestión documental y custodia de las bases de datos físicas, cuando la compañía lo considere necesario, bajo los estándares de seguridad y confidencialidad establecidos por la compañía.
                                 </p>
                                 <p style="text-align:justify;font-size:13px">

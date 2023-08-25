@@ -115,4 +115,10 @@
 .addButton {
     background: green;
 }
+
+#line-container {
+    width: 300px;
+    height: 40px;
+    margin: 50px auto;
+}
   

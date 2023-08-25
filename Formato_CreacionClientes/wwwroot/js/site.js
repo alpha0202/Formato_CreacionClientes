@@ -25,7 +25,6 @@ const seccion_Natural = document.querySelector("#seccionPerNatural");
 const seccion_InfoSocial = document.querySelector("#seccionInfoSocial");
 const tipo_identificacion = document.querySelector("#tipoIdentificacion");
 
-
 tipo_persona.addEventListener("change", () => {
     if (tipo_persona.value === "Juridica") {
 
@@ -85,6 +84,20 @@ selectCambio_dir.addEventListener("change", () => {
         seccionDireccion_Ant.classList.add("d-none");
     }
 });
+
+
+
+//SelectCambiaSu.addEventListener("change", () => {
+//    if (SelectCambiaSu.value === "si") {
+//        seccionDireccion_Ant.classList.remove("d-none");
+//    }
+//    else {
+//        seccionDireccion_Ant.classList.add("d-none");
+//    }
+//});
+
+
+
 
 //cantidades_sucursales.addEventListener("change", () => {
 
@@ -153,9 +166,10 @@ $(document).ready(function () {
     let selectedCiudad;
     let inputsRZTAccionistas = $('table input.razonSocialClass');
     let radioTipPerTAccionistas = $('table input.tipoPerClass');
-    let selectTipoIdTAccionistas = $('table select.selectTipoId')
-    let inputNumDocTAccionistas = $('table input.numDocClass')
-    let inputPorcTAccionistas = $('table input.porcentaje')
+    let selectTipoIdTAccionistas = $('table select.selectTipoId');
+    let inputNumDocTAccionistas = $('table input.numDocClass');
+    let inputPorcTAccionistas = $('table input.porcentaje');
+    let cargaAccionistas = document.getElementById('inputCargaAccionistas');
 
 
     $('input[type=radio][name=inlineRadioOptions]').change(function()  {
@@ -168,23 +182,36 @@ $(document).ready(function () {
     });
 
     $('input[type=radio][name=inlineRadioOptions2]').change(function () {
-        if (this.value == "si")
+        if (this.value == "si") {
+
             $("#seccionCargoPublico").removeClass("invisible");
-        else
+           
+        }
+        else {
+
             $("#seccionCargoPublico").addClass("invisible");
+           
+        }
 
 
     });
 
     $('input[type=radio][name=inlineRadioAccionistas]').change(function () {
-        if (this.value == "si")
+        if (this.value == "si") {
+
             $("#cargaAccionistas").removeClass("d-none");
-        else
+            cargaAccionistas.required = true;
+        }
+        else {
             $("#cargaAccionistas").addClass("d-none");
+            cargaAccionistas.required = false;
+
+        }
 
         if (this.value == "no") {
 
             $("#tablaAccionistas").removeClass("d-none");
+            $("#filaSumaAccionistas").removeClass("d-none");
             $(inputsRZTAccionistas).prop("required", true);
             $(radioTipPerTAccionistas).prop("required", true);
             $(selectTipoIdTAccionistas).prop("required", true);
@@ -196,6 +223,7 @@ $(document).ready(function () {
         else {
 
             $("#tablaAccionistas").addClass("d-none");
+            $("#filaSumaAccionistas").addClass("d-none");
             $(inputsRZTAccionistas).prop("required", false);
             $(radioTipPerTAccionistas).prop("required", false);
             $(selectTipoIdTAccionistas).prop("required", false);
@@ -205,10 +233,10 @@ $(document).ready(function () {
 
     });
 
+   
 
 
-
-    SumarPorcentajes();
+    //SumarPorcentajes();
 
 
     $("#cboDepartamento").change(function () {
@@ -276,28 +304,27 @@ $(document).ready(function () {
         if (iCnt <= 4) {
             iCnt = iCnt + 1;
 
-
             const filaUno = `<div class="tb${iCnt}" id="tb${iCnt}">
                              <div class="card-body mx-2 px-0">
-                              <div class="row bg-light cambioDirSucursal">
-                                <div class="col-sm-6 bg-light " id="seccionCambioDir${iCnt}">
-                                  <div class="form-floating ">
-                                    <select class="form-select cambioDirSucursalCbo" id="cambioDireccion${iCnt}" required>
-                                      <option selected></option>
-                                      <option value="si">Si</option>
-                                      <option value="no">No</>
-                                    </select>
-                                    <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
-                                  </div>
-                                </div>
-                                <div class="col-sm-6  bg-light direccionAnterior" id="seccionDirAnterior${iCnt}">
-                                  <div class="form-floating">
-                                    <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal${iCnt}" disabled>
-                                    <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>`
+                               <div class="row bg-light cambioDirSucursal">
+                                 <div class="col-sm-6 bg-light " id="seccionCambioDir${iCnt}">
+                                   <div class="form-floating datosSucursales">
+                                     <select class="form-select cambioDirSucursalCbo" id="cambioDireccion${iCnt}">
+                                       <option selected></option>
+                                       <option value="si">Si</option>
+                                       <option value="no">No</>
+                                     </select>
+                                     <label for="floatingSelect"><strong>¿Requiere cambio de dirección de despacho?</strong></label>
+                                   </div>
+                                 </div>
+                                 <div class="col-sm-6  bg-light direccionAnterior" id="seccionDirAnterior${iCnt}">
+                                   <div class="form-floating">
+                                     <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal${iCnt}" disabled>
+                                     <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
+                                   </div>
+                                 </div>
+                               </div>
+                             </div>`
 
 
             const filaDos = `<div class="tb${iCnt}" id="tb${iCnt}">
@@ -412,30 +439,31 @@ $(document).ready(function () {
        
     });
 
-    BuscarInputs();
+    //BuscarInputs();
 
+    //detectar cambio dirección sucursal-sección clonada
+   
+    //$('select.cambioDirSucursalCbo').on('change', function () {
+    //    var selected_CboId = $(this).attr('id');
+    //    var valCboCambio = $("#" + selected_CboId).val();
+    //    const seccionDireAnterior = $('div.direccionAnterior').attr('id');
+    //    console.log('Selected ID:', selected_CboId);
+    //    console.log(valCboCambio);
+
+    //    if (valCboCambio.value === "si") {
+    //        $("#" + seccionDireAnterior).removeClass("d-none");
+    //    }
+    //    else {
+    //        $("#" + seccionDireAnterior).addClass("d-none");
+    //    }
+
+    //});
 
    
   
 });
 
 
-//detectar cambio dirección sucursal-sección clonada
-$('.cambioDirSucursalCbo').on('change',function () {
-    var selected_CboId = $(this).attr('id');
-    var valCboCambio = $("#" + selected_CboId).val();
-    const seccionDireAnterior = $('div.direccionAnterior').attr('id');
-    console.log('Selected ID:', selected_CboId);
-    console.log(valCboCambio);
-
-    if (valCboCambio.value === "si") {
-        $("#" + seccionDireAnterior).removeClass("d-none");
-    }
-    else {
-        $("#" + seccionDireAnterior).addClass("d-none");
-    }
-
-});
 
 
 
@@ -473,13 +501,30 @@ function GetTextValue() {
 
 
 function BuscarInputs() {
+    //const SelectCambiaSu = document.querySelector("cambioDirSucursalCbo");
+    const SelectCambiaSu = document.getElementsByClassName("cambioDirSucursalCbo");
+    var selected_CboId = $(SelectCambiaSu).attr('id');
+    console.log(SelectCambiaSu);
+    console.log(selected_CboId);
     var columnas = [];
+    var colSelects = [];
 
     $('.datosSucursales').find('input').each(function () {
         //console.log($(this).val());
         var inputValue = $(this).val();
         columnas.push(inputValue);
         console.log(columnas);
+        console.log(SelectCambiaSu);
+        console.log(selected_CboId);
+    })
+
+    $('.datosSucursales').find('select').each(function () {
+        //console.log($(this).val());
+        var selectValue = $(this).val();
+        colSelects.push(selectValue);
+        console.log(colSelects);
+        //console.log(SelectCambiaSu);
+        //console.log(selected_CboId);
     })
 };
 
@@ -584,26 +629,35 @@ function SumarPorcentajes() {
     });
 }
 
-function sumar(valor) {
+
+//sumar los porcentaje de cada registro de la tabla accionistas.
+function sumar() {
     var total = 0;
-    valor = parseInt(valor); // Convertir el valor a un entero (número).
+    $(".porcentaje").each(function () {
 
-    total = document.getElementById('spTotal').innerHTML;
+        if (isNaN(parseFloat($(this).val()))) {
 
-    // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
-    total = (total == null || total == undefined || total == "") ? 0 : total;
+            total += 0;
 
-    /* Esta es la suma. */
-    total = (parseInt(total) + parseInt(valor));
+        } else {
 
-    // Colocar el resultado de la suma en el control "span".
-    document.getElementById('spTotal').innerHTML = total;
+            total += parseFloat($(this).val());
+        }
+    });
 
     if (total > 96) {
-        console.log(total);
+       // alert("sobrepasa");
+        appendAlert(`${total}% : Excede el 96% de participación accionaria.`, "warning")
+        total = 0
+        $('input.porcentaje').val('');
+        document.getElementById('spTotal').innerHTML = total;
     }
-}
+    else {
 
+        document.getElementById('spTotal').innerHTML = total;
+    }
+
+}
 
 
 function cargarCiudades() {
@@ -866,17 +920,29 @@ const agregarOptionNew = () => {
 
 //alertas
 
-const alertPlaceholder = document.getElementById('liveAlertPlaceholder')
+const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const appendAlert = (message, type) => {
 
-    const wrapper = document.createElement('div')
+    //const wrapper = document.createElement('div')
 
-    wrapper.innerHTML = [
-        `<div class="alert alert-${type}  alert-dismissible" role="alert">`,
-        `   <div><strong>${message}</strong></div>`,
-        '</div>'
-    ].join('')
-    alertPlaceholder.appendChild(wrapper)
+    //wrapper.innerHTML = [
+    //    `<div class="alert alert-${type}  alert-dismissible" role="alert">`,
+    //    `   <div><strong>${message}</strong></div>`,
+    //    '</div>'
+    //].join('')
+    //alertPlaceholder.appendChild(wrapper);
+
+    const mensaje = message;
+    alertPlaceholder.style.display = "block";
+    alertPlaceholder.innerHTML = mensaje;
+    alertPlaceholder.classList.add("alert-"+type);
+    alertPlaceholder.classList.add("show");
+
+
+
+    setTimeout(function () {
+        $(alertPlaceholder).fadeOut(1000);
+    }, 1500);
 }
 
 function CerrandoAlerta(message, tipoAlert) {
@@ -899,6 +965,34 @@ function CerrandoAlerta(message, tipoAlert) {
     }, 2000);
 }
 
+
+
+//var lineBar = new ProgressBar.Line("#line-container", {
+//    strokeWidth: 4,
+//    trailWidth: 0.5,
+//    from: { color: "#FF9900" },
+//    to: { color: "#00FF99" },
+//    text: {
+//        value: '0',
+//        className: 'progress-text',
+//        style: {
+//            color: 'black',
+//            position: 'absolute',
+//            top: '-30px',
+//            padding: 0,
+//            margin: 0,
+//            transform: null
+//        }
+//    },
+//    step: (state, shape) => {
+//        shape.path.setAttribute("stroke", state.color);
+//        shape.setText(Math.round(shape.value() * 100) + ' %');
+//    }
+//});
+
+//lineBar.animate(1, {
+//    duration: 8000
+//});
 
 
 ////copia representante legal, al campo representate legal de la sección firma.

@@ -1,7 +1,8 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿/**
+ * @version     2023.08.01.1
+ * @author      edwin.martinez
+ * @copyright   Aliar S.A
+ * **/
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()
 })
@@ -87,36 +88,6 @@ selectCambio_dir.addEventListener("change", () => {
 
 
 
-//SelectCambiaSu.addEventListener("change", () => {
-//    if (SelectCambiaSu.value === "si") {
-//        seccionDireccion_Ant.classList.remove("d-none");
-//    }
-//    else {
-//        seccionDireccion_Ant.classList.add("d-none");
-//    }
-//});
-
-
-
-
-//cantidades_sucursales.addEventListener("change", () => {
-
-
-
-//    var numeroVeces = $('#cantidadSucursales').val();
-//    //if ($('#destinoClone').length) {
-//    //    $('#destinoClone').remove();
-
-//    //}
-//    //else {
-//    //    $('#secc_cantidadesSucursales').after('<div id="destinoClone"></div>')
-//    //}
-
-//    ClonarElementos(seccion_cantidadSucursales, numeroVeces);
-
-
-//});
-
 
 
 
@@ -170,6 +141,7 @@ $(document).ready(function () {
     let inputNumDocTAccionistas = $('table input.numDocClass');
     let inputPorcTAccionistas = $('table input.porcentaje');
     let cargaAccionistas = document.getElementById('inputCargaAccionistas');
+    let iCnt = 0;
 
 
     $('input[type=radio][name=inlineRadioOptions]').change(function()  {
@@ -236,9 +208,6 @@ $(document).ready(function () {
    
 
 
-    //SumarPorcentajes();
-
-
     $("#cboDepartamento").change(function () {
 
        
@@ -251,43 +220,9 @@ $(document).ready(function () {
         //LLamarCiudadSucursales();
     });
 
-    
-
-    //verificar los input de secciones clonadas
-    //$('#secc_cantidadesSucursales input').on('change',function () {
-    //    var selectedInputId = $(this).attr('id');
-    //    var valorInput = $('#'+selectedInputId).val();
-    //    console.log('Selected ID:',selectedInputId);
-    //    console.log(valorInput);
-    //})
-
-
-  
-    //detectar cambio departamento sección clonados
-    //$('.comboDepartamentoSucursales').on('change', function () {
-    //    selected_CboDpto_Id = $(this).attr('id');
-    //    selectedDpto = $("#" + selected_CboDpto_Id).val();
-    //    console.log('Selected ID:', selected_CboDpto_Id);
-    //    console.log(selectedDpto);
-
-    //});
-
-    //detectar combo seleccionado sección clonados
-    //$(".comboCiudadSucursales").click( function () {
-    //    selected_CboCiudad_Id = $(this).attr('id');
-    //    selectedCiudad = $("#" + selected_CboCiudad_Id).val();
-    //    console.log('Selected ID:', selected_CboCiudad_Id);
-    //    console.log(selectedCiudad);
-    //    //$(selected_CboCiudad_Id).val('');
-    //    LLamarCiudadSucursalesClone(selectedDpto,selected_CboCiudad_Id);
-
-    //});
-
-
+   
    
 
-    //////////////////////////////////////////////////////////////////////////////
-    var iCnt = 0;
 
 
     var container = document.createElement('div');
@@ -350,7 +285,7 @@ $(document).ready(function () {
 
                              
                              <label class="input-group-text" for="" style="font-size:13px"><strong>Ciudad</strong></label>
-                             <input asp-for=Ciudad_Despacho type="text" class="form-control comboDepartamentoSucursales" id="cboCiudadSucursal${iCnt}" required>
+                             <input asp-for=Ciudad_Despacho type="text" class="form-control comboCiudadSucursal" id="cboCiudadSucursal${iCnt}" required>
                                
                             </div>
                      </div>
@@ -441,23 +376,40 @@ $(document).ready(function () {
 
     //BuscarInputs();
 
-    //detectar cambio dirección sucursal-sección clonada
-   
-    //$('select.cambioDirSucursalCbo').on('change', function () {
-    //    var selected_CboId = $(this).attr('id');
-    //    var valCboCambio = $("#" + selected_CboId).val();
-    //    const seccionDireAnterior = $('div.direccionAnterior').attr('id');
-    //    console.log('Selected ID:', selected_CboId);
-    //    console.log(valCboCambio);
+    //
+    $("#btSubmit").click(function () {
+        var dataToSend = [];
 
-    //    if (valCboCambio.value === "si") {
-    //        $("#" + seccionDireAnterior).removeClass("d-none");
-    //    }
-    //    else {
-    //        $("#" + seccionDireAnterior).addClass("d-none");
-    //    }
+        $('.datosSucursales').each(function () {
+            var inputVal_DirAnt = $(this).siblings(".dirAnteriorSuc").val();
+            var inputVal_DirNuevoDes = $(this).siblings(".direccNuevaSuc").val();
+            var inputVal_BarrioDes = $(this).siblings(".barrioDespSucursal").val();
+            var inputVal_DptoDes = $(this).siblings(".comboDepartamentoSucursales").val();
+            var inputVal_CityDes = $(this).siblings(".comboCiudadSucursal").val();
+            var inputVal_CelDes = $(this).siblings(".celSucursal").val();
+            var inputVal_TelDes = $(this).siblings(".telSucursal").val();
+            var inputVal_EmailDes = $(this).siblings(".emailSucursal").val();
 
-    //});
+            var dato = {
+
+            }
+
+            dataToSend.push(inputValue);
+        });
+
+        $.ajax({
+            type: "POST",
+            url: "/Clientes/GuardarDatos",
+            data: JSON.stringify(dataToSend),
+            contentType: "application/json",
+            success: function (response) {
+                console.log("Datos enviados exitosamente", response);
+            },
+            error: function (error) {
+                console.error("Error al enviar los datos", error);
+            }
+        });
+    });
 
    
   
@@ -611,23 +563,6 @@ function ClonarElementos(elemento, veces) {
 
 }
 
-
-
-function SumarPorcentajes() {
-    // Obtener los elementos input
-    const inputs = $('input.porcentaje');
-
-    // Agregar un event listener a cada input
-    inputs.on('input', () => {
-        // Sumar los valores de los inputs
-        const total = Array.from(inputs).reduce((acc, input) => acc + Number(input.value), 0);
-
-        // Verificar si la suma es igual a 100
-        if (total === 100) {
-            alert('La suma es igual a 100');
-        }
-    });
-}
 
 
 //sumar los porcentaje de cada registro de la tabla accionistas.
@@ -918,7 +853,7 @@ const agregarOptionNew = () => {
 
 
 
-//alertas
+//alertas 
 
 const alertPlaceholder = document.getElementById('liveAlertPlaceholder');
 const appendAlert = (message, type) => {
@@ -967,6 +902,9 @@ function CerrandoAlerta(message, tipoAlert) {
 
 
 
+
+
+//#region sin uso
 //var lineBar = new ProgressBar.Line("#line-container", {
 //    strokeWidth: 4,
 //    trailWidth: 0.5,
@@ -1009,10 +947,6 @@ function CerrandoAlerta(message, tipoAlert) {
 
 
 
-
-
-
-
 //function addRow(event) {
 //    var rowId = $(event.target).attr("id");
 //    //var $row = $("id", rowId);
@@ -1030,3 +964,106 @@ function CerrandoAlerta(message, tipoAlert) {
 //}
 
 
+//function SumarPorcentajes() {
+//    // Obtener los elementos input
+//    const inputs = $('input.porcentaje');
+
+//    // Agregar un event listener a cada input
+//    inputs.on('input', () => {
+//        // Sumar los valores de los inputs
+//        const total = Array.from(inputs).reduce((acc, input) => acc + Number(input.value), 0);
+
+//        // Verificar si la suma es igual a 100
+//        if (total === 100) {
+//            alert('La suma es igual a 100');
+//        }
+//    });
+//}
+
+
+
+    //detectar cambio dirección sucursal-sección clonada
+
+    //$('select.cambioDirSucursalCbo').on('change', function () {
+    //    var selected_CboId = $(this).attr('id');
+    //    var valCboCambio = $("#" + selected_CboId).val();
+    //    const seccionDireAnterior = $('div.direccionAnterior').attr('id');
+    //    console.log('Selected ID:', selected_CboId);
+    //    console.log(valCboCambio);
+
+    //    if (valCboCambio.value === "si") {
+    //        $("#" + seccionDireAnterior).removeClass("d-none");
+    //    }
+    //    else {
+    //        $("#" + seccionDireAnterior).addClass("d-none");
+    //    }
+
+    //});
+
+
+
+
+    //**verificar los input de secciones clonadas*//
+    //$('#secc_cantidadesSucursales input').on('change',function () {
+    //    var selectedInputId = $(this).attr('id');
+    //    var valorInput = $('#'+selectedInputId).val();
+    //    console.log('Selected ID:',selectedInputId);
+    //    console.log(valorInput);
+    //})
+
+
+
+    //detectar cambio departamento sección clonados
+    //$('.comboDepartamentoSucursales').on('change', function () {
+    //    selected_CboDpto_Id = $(this).attr('id');
+    //    selectedDpto = $("#" + selected_CboDpto_Id).val();
+    //    console.log('Selected ID:', selected_CboDpto_Id);
+    //    console.log(selectedDpto);
+
+    //});
+
+    //detectar combo seleccionado sección clonados
+    //$(".comboCiudadSucursales").click( function () {
+    //    selected_CboCiudad_Id = $(this).attr('id');
+    //    selectedCiudad = $("#" + selected_CboCiudad_Id).val();
+    //    console.log('Selected ID:', selected_CboCiudad_Id);
+    //    console.log(selectedCiudad);
+    //    //$(selected_CboCiudad_Id).val('');
+    //    LLamarCiudadSucursalesClone(selectedDpto,selected_CboCiudad_Id);
+
+    //});
+
+    //SelectCambiaSu.addEventListener("change", () => {
+//    if (SelectCambiaSu.value === "si") {
+//        seccionDireccion_Ant.classList.remove("d-none");
+//    }
+//    else {
+//        seccionDireccion_Ant.classList.add("d-none");
+//    }
+//});
+
+
+
+
+//cantidades_sucursales.addEventListener("change", () => {
+
+
+
+//    var numeroVeces = $('#cantidadSucursales').val();
+//    //if ($('#destinoClone').length) {
+//    //    $('#destinoClone').remove();
+
+//    //}
+//    //else {
+//    //    $('#secc_cantidadesSucursales').after('<div id="destinoClone"></div>')
+//    //}
+
+//    ClonarElementos(seccion_cantidadSucursales, numeroVeces);
+
+
+//});
+
+
+
+
+//#endregion

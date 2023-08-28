@@ -6,7 +6,7 @@ using static Microsoft.AspNetCore.Razor.Language.TagHelperMetadata;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data;
 using Formato_CreacionClientes.CapaData;
-
+using Dapper;
 
 namespace Formato_CreacionClientes.Controllers
 {
@@ -16,14 +16,17 @@ namespace Formato_CreacionClientes.Controllers
         private readonly HttpClient _httpClient;
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
+        private readonly IDbConnection _dbconnection;
 
-        public ClientesController(ICreacionClientesRepository creacionClientes, HttpClient httpClient, IWebHostEnvironment webHostEnvironment, IConfiguration configuration)
+        public ClientesController(ICreacionClientesRepository creacionClientes, 
+                                  HttpClient httpClient, IWebHostEnvironment webHostEnvironment, 
+                                  IConfiguration configuration, IDbConnection dbconnection)
         {
             _creacionClientes = creacionClientes;
             _httpClient = httpClient;
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
-
+            _dbconnection = dbconnection;
         }
 
 
@@ -115,7 +118,56 @@ namespace Formato_CreacionClientes.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult GuardarDatos([FromBody] string[] inputs)
+        {
+           
 
+            if (inputs != null && inputs.Length > 0)
+            {
+                //using IDbConnection dbConnection = new MySqlConnection(_configuration.GetConnectionString("DefaultConnection"));
+                //dbConnection.Open();
+
+                foreach (var inputValue in inputs)
+                {
+                    
+                    var sql = @"INSERT INTO n97eed5_MaestrosProcesos.Sucursales_Clientes
+                                                                                        ( CANTIDAD_SUCURSAL_DESPACHO,
+                                                                                          DIRECCION_ANTERIOR_DESPACHO,
+                                                                                          DIRECCION_NUEVA_DESPACHO,
+                                                                                          BARRIO_DESPACHO,
+                                                                                          CIUDAD_DESPACHO,
+                                                                                          DEPARTAMENTO_DESPACHO,
+                                                                                          CELULAR_DESPACHO,
+                                                                                          TELEFONO_DESPACHO,
+                                                                                          EMAIL_FACTELECTRONICA_DESPACHO,
+                                                                                          IDCREACION_CLIENTE
+                                                                                          )
+                                                                                         value(
+                                                                                                @CANTIDAD_SUCURSAL_DESPACHO ,
+                                                                                                @DIRECCION_ANTERIOR_DESPACHO ,
+                                                                                                @DIRECCION_NUEVA_DESPACHO ,
+                                                                                                @BARRIO_DESPACHO ,
+                                                                                                @CIUDAD_DESPACHO ,
+                                                                                                @DEPARTAMENTO_DESPACHO ,
+                                                                                                @CELULAR_DESPACHO ,
+                                                                                                @TELEFONO_DESPACHO ,
+                                                                                                @EMAIL_FACTELECTRONICA_DESPACHO ,
+                                                                                                @null)
+                                                                                                    ";
+
+
+                    _dbconnection.Execute(sql, inputValue);
+                    
+                }
+
+                return Ok(new { message = "Datos guardados exitosamente" });
+            }
+            else
+            {
+                return BadRequest(new { error = "No se encontraron datos válidos en el JSON" });
+            }
+        }
 
 
 
@@ -168,32 +220,6 @@ namespace Formato_CreacionClientes.Controllers
             return Json(respuesta);
         }
 
-
-
-
-        //[HttpPost]
-        //public List<Combo> GetCiudades(string dpto)
-        //{
-
-
-        //    List<Combo> respuesta = new List<Combo>();
-        //    DataTable dt = new DataTable();
-        //    string sql = "SELECT UPPER(f013_descripcion) AS Ciudad FROM UNOEEALIAR.dbo.t013_mm_ciudades INNER JOIN UNOEEALIAR.dbo.t012_mm_deptos on f013_id_depto = f012_id  WHERE f013_id_pais = '169' and UPPER(f012_descripcion) = '" + dpto + "'" +
-        //                  " ORDER BY f013_descripcion";
-
-        //    dt = Datos.ObtenerDataTable(sql);
-
-        //    foreach (DataRow dr in dt.Rows)
-        //    {
-        //        Combo res = new Combo();
-        //        res.Value = dr[0].ToString();
-        //        res.Descripcion = dr[0].ToString();
-        //        respuesta.Add(res);
-
-        //    }
-        //    //ViewData["comboCiudad"] = new Microsoft.AspNetCore.Mvc.Rendering.SelectList(GetCiudades(dpto), "Value", "Descripcion");
-        //    return respuesta;
-        //}
 
 
 

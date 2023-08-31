@@ -118,8 +118,10 @@ namespace Formato_CreacionClientes.Controllers
             return View();
         }
 
+
+
         [HttpPost]
-        public IActionResult GuardarDatos([FromBody] string[] inputs)
+        public ActionResult GuardarDatos([FromBody] SucursalesModel[] inputs)
         {
            
 
@@ -144,16 +146,17 @@ namespace Formato_CreacionClientes.Controllers
                                                                                           IDCREACION_CLIENTE
                                                                                           )
                                                                                          value(
-                                                                                                @CANTIDAD_SUCURSAL_DESPACHO ,
-                                                                                                @DIRECCION_ANTERIOR_DESPACHO ,
-                                                                                                @DIRECCION_NUEVA_DESPACHO ,
-                                                                                                @BARRIO_DESPACHO ,
-                                                                                                @CIUDAD_DESPACHO ,
-                                                                                                @DEPARTAMENTO_DESPACHO ,
-                                                                                                @CELULAR_DESPACHO ,
-                                                                                                @TELEFONO_DESPACHO ,
-                                                                                                @EMAIL_FACTELECTRONICA_DESPACHO ,
-                                                                                                @null)
+                                                                                               null,
+                                                                                               @Direccion_anterior_despacho ,
+                                                                                               @Direccion_nueva_despacho ,
+                                                                                               @Barrio_despacho ,
+                                                                                               @Ciudad_despacho ,
+                                                                                               @Departamento_despacho ,
+                                                                                               @Ciudad_despacho,
+                                                                                               @Celular_despacho ,
+                                                                                               @Telefono_despacho ,
+                                                                                               @Email_factelectronica_despacho ,
+                                                                                               null)
                                                                                                     ";
 
 

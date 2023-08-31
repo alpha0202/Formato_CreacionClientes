@@ -253,8 +253,8 @@ $(document).ready(function () {
                                    </div>
                                  </div>
                                  <div class="col-sm-6  bg-light direccionAnterior" id="seccionDirAnterior${iCnt}">
-                                   <div class="form-floating">
-                                     <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal${iCnt}" disabled>
+                                   <div class="form-floating datosSucursales">
+                                     <input asp-for=Direccion_Anterior_Despacho type="text" class="form-control dirAnteriorSuc" id="dirAnteSucursal${iCnt}" >
                                      <label for="floatingInputGrid"><strong>Dirección despacho Anterior</strong></label>
                                    </div>
                                  </div>
@@ -266,11 +266,11 @@ $(document).ready(function () {
                             <div class="row bg-light">
                                <div class="card-body mx-2 px-0">
                                 <div class="input-group mb-2 datosSucursales">                          
-                                 <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
-                                 <input asp-for=Direccion_Nueva_Despacho type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal${iCnt}" required>
+                                    <span class="input-group-text" style="font-size:13px"><strong>Dirección despacho</strong></span>
+                                    <input asp-for="Direccion_Nueva_Despacho" type="text" class="form-control direccNuevaSuc" id="dirNuevaSucursal${iCnt}" required>
                                 
-                                 <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
-                                 <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal${iCnt}" required>
+                                    <span class="input-group-text" style="font-size:13px"><strong>Barrio</strong></span>
+                                    <input asp-for="Barrio_Despacho" type="text" class="form-control barrioDespSucursal" id="barrioSucursal${iCnt}" required>
                                 </div>
                              </div>
                             </div>`
@@ -391,10 +391,17 @@ $(document).ready(function () {
             var inputVal_EmailDes = $(this).siblings(".emailSucursal").val();
 
             var dato = {
-
+                Direccion_anterior_despacho: inputVal_DirAnt,
+                Direccion_nueva_despacho: inputVal_DirNuevoDes,
+                Barrio_despacho: inputVal_BarrioDes,
+                Departamento_despacho: inputVal_DptoDes,
+                Ciudad_despacho: inputVal_CityDes,
+                Celular_despacho: inputVal_CelDes,
+                Telefono_despacho: inputVal_TelDes,
+                Email_factelectronica_despacho: inputVal_EmailDes
             }
 
-            dataToSend.push(inputValue);
+            dataToSend.push(dato);
         });
 
         $.ajax({
@@ -425,6 +432,7 @@ var divValue,
 
 function GetTextValue() {
     BuscarInputs();
+    SendDataValue();
     const inputs = $('datosSucursales input');
     $(divValue).empty();
     $(divValue).remove();
@@ -451,6 +459,52 @@ function GetTextValue() {
     $("#destinoClone").append(divValue);
 }
 
+function SendDataValue() {
+    var dataToSend = [];
+
+    $('.datosSucursales').find('input').each(function () {
+
+
+        //var groupData = $(this).val();
+        //dataToSend.push(groupData);
+
+        var inputVal_DirAnt = $(".dirAnteriorSuc").val();
+        var inputVal_DirNuevoDes = $(".direccNuevaSuc").val();
+        var inputVal_BarrioDes = $(".barrioDespSucursal").val();
+        var inputVal_DptoDes = $(".comboDepartamentoSucursales").val();
+        var inputVal_CityDes = $(".comboCiudadSucursal").val();
+        var inputVal_CelDes = $(".celSucursal").val();
+        var inputVal_TelDes = $(".telSucursal").val();
+        var inputVal_EmailDes = $(".emailSucursal").val();
+
+        var dato = {
+            Direccion_anterior_despacho: inputVal_DirAnt,
+            Direccion_nueva_despacho: inputVal_DirNuevoDes,
+            Barrio_despacho: inputVal_BarrioDes,
+            Departamento_despacho: inputVal_DptoDes,
+            Ciudad_despacho: inputVal_CityDes,
+            Celular_despacho: inputVal_CelDes,
+            Telefono_despacho: inputVal_TelDes,
+            Email_factelectronica_despacho: inputVal_EmailDes
+        }
+
+        dataToSend.push(dato);
+    });
+
+    $.ajax({
+        url: '/Clientes/GuardarDatos',
+        data: JSON.stringify(dataToSend),
+        //data: { dataToSend },
+        type: "POST",
+        contentType: "application/json",
+        success: function (response) {
+            console.log("Datos enviados exitosamente", response);
+        },
+        error: function (error) {
+            console.error("Error al enviar los datos", error);
+        }
+    });
+}
 
 function BuscarInputs() {
     //const SelectCambiaSu = document.querySelector("cambioDirSucursalCbo");

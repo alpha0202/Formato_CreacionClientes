@@ -7,6 +7,8 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Data;
 using Formato_CreacionClientes.CapaData;
 using Dapper;
+using Formulario_SuministroCredito.Service;
+using Rotativa.AspNetCore;
 
 namespace Formato_CreacionClientes.Controllers
 {
@@ -17,16 +19,18 @@ namespace Formato_CreacionClientes.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IConfiguration _configuration;
         private readonly IDbConnection _dbconnection;
+        private readonly IServiceFileUpload _serviceFileUpload;
 
         public ClientesController(ICreacionClientesRepository creacionClientes, 
                                   HttpClient httpClient, IWebHostEnvironment webHostEnvironment, 
-                                  IConfiguration configuration, IDbConnection dbconnection)
+                                  IConfiguration configuration, IDbConnection dbconnection, IServiceFileUpload serviceFileUpload)
         {
             _creacionClientes = creacionClientes;
             _httpClient = httpClient;
             _webHostEnvironment = webHostEnvironment;
             _configuration = configuration;
             _dbconnection = dbconnection;
+            _serviceFileUpload = serviceFileUpload;
         }
 
 
@@ -198,31 +202,6 @@ namespace Formato_CreacionClientes.Controllers
         }
 
 
-        [HttpPost]
-        public ActionResult GetDepartamento()
-        {
-
-            List<Combo> respuesta = new List<Combo>();
-            DataTable dt = new DataTable();
-            string sql = "SELECT UPPER(f012_descripcion) AS Ciudad" +
-                         "  FROM UNOEEALIAR.dbo.t012_mm_deptos" +
-                         " WHERE f012_id_pais = '169'" +
-                         " ORDER BY f012_descripcion";
-
-            dt = Datos.ObtenerDataTable(sql);
-
-            foreach (DataRow dr in dt.Rows)
-            {
-                Combo res = new Combo();
-                res.Value = dr[0].ToString();
-                res.Descripcion = dr[0].ToString();
-                respuesta.Add(res);
-
-            }
-
-            return Json(respuesta);
-        }
-
 
 
 
@@ -325,5 +304,50 @@ namespace Formato_CreacionClientes.Controllers
                 return View();
             }
         }
+
+
+        public IActionResult pdf_firma_solicita(int id)
+        {
+            var contador = _creacionClientes.CountRowDb();
+            var detalle = _creacionClientes.GetById(id);
+
+            var creacionCliente  = new ClientesModel()
+            {
+               
+
+            };
+
+
+            string fileName = "DocumentoFirma.pdf";
+            string path_docFirma = _serviceFileUpload.CrearDirectorio_Firmante();
+
+
+            TempData["MensajeAccion"] = "Documento PDF creado correctamente...!";
+
+            return new ViewAsPdf("pdf_firma_solicita", creacionCliente)
+
+            {
+                PageSize = Rotativa.AspNetCore.Options.Size.A4,
+                PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+                FileName = fileName,
+                SaveOnServerPath = path_docFirma
+
+            };
+
+
+            //.BuildFile(this.ControllerContext);
+            //bool enviarDrive = _serviceFileUpload.SubirArchivoDrive(path);
+
+            //var myPDF = new ViewAsPdf("PdfNew", suministroCredito)
+            //{
+            //    FileName = fileName,
+            //    PageSize = Rotativa.AspNetCore.Options.Size.A4,
+            //    PageOrientation = Rotativa.AspNetCore.Options.Orientation.Portrait,
+            //    SaveOnServerPath = path
+            //};
+            //var enviarToDrive = _serviceFileUpload.SubirArchivoDrive(fullPath);
+            //return View("PdfNew", suministroCredito);
+        }
+
     }
 }

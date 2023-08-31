@@ -54,4 +54,11 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=clientes}/{action=Index}/{id?}");
 
+
+
+//carga de paquetes .exe rotativa PDF
+IWebHostEnvironment env = app.Environment;
+Rotativa.AspNetCore.RotativaConfiguration.Setup(env.WebRootPath, "../Rotativa");
+
+
 app.Run();

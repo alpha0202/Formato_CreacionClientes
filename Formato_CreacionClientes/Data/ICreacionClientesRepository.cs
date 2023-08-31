@@ -14,7 +14,7 @@ namespace Formato_CreacionClientes.Data
 
         public string CountRowDb();
 
-
+      
 
     }
 }
